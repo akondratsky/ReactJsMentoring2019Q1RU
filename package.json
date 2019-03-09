@@ -1,0 +1,22 @@
+{
+  "name": "reactjsmentoring2019q1ru",
+  "version": "1.0.0",
+  "description": "homework tasks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akondratsky/ReactJsMentoring2019Q1RU.git"
+  },
+  "author": "Aleksandr Kondratskii",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akondratsky/ReactJsMentoring2019Q1RU/issues"
+  },
+  "homepage": "https://github.com/akondratsky/ReactJsMentoring2019Q1RU#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
