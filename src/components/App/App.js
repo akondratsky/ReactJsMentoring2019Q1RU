@@ -7,10 +7,14 @@ export class App extends Component {
   constructor(props) {
     super(props);
     this.state = { counter: 0 };
+  }
+
+  componentDidMount() {
+    // to demonstrate back-end is works
     fetch('/api/movies')
         .then((res) => res.json())
-        .then((result) => {
-          console.log(result);
+        .then((data) => {
+          console.log(data.text);
         });
   }
 

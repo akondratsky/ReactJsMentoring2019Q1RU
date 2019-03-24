@@ -4,9 +4,10 @@
   "description": "homework tasks",
   "main": "index.js",
   "scripts": {
-    "dev": "set ENV_MODE=development&&webpack-dev-server",
-    "server": "cmd.exe -new_console /c node ./src/server-side/index.js",
-    "prod": "set ENV_MODE=production&&webpack",
+    "dev": "npx cross-env ENV_MODE=development webpack-dev-server",
+    "server": "node ./src/server-side/index.js",
+    "win-server": "cmd.exe -new_console /c node ./src/server-side/index.js",
+    "prod": "npx cross-env ENV_MODE=production webpack",
     "test": "jest"
   },
   "repository": {
@@ -24,7 +25,7 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-redux": "^6.0.1",
-    "react-router": "^4.4.0",
+    "react-router": "^5.0.0",
     "redux": "^4.0.1"
   },
   "devDependencies": {
@@ -36,6 +37,7 @@
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.5.0",
     "babel-loader": "^8.0.5",
+    "cross-env": "^5.2.0",
     "css-loader": "^2.1.1",
     "eslint": "^5.15.2",
     "eslint-config-google": "^0.12.0",

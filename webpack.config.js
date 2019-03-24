@@ -4,6 +4,8 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+console.log(process.env.ENV_MODE);
+
 const mode = process.env.ENV_MODE || 'development';
 const isProduction = mode == 'production';
 
@@ -29,11 +31,11 @@ module.exports = {
     new webpack.DefinePlugin({
       DEBUG: !isProduction,
     }),
-    new MiniCssExtractPlugin({
+    isProduction && new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css',
     }),
-  ],
+  ].filter(Boolean),
 
   module: {
     rules: [
@@ -58,15 +60,15 @@ module.exports = {
   mode,
 
   optimization: {
-    mergeDuplicateChunks: isProduction ? true : false,
-    minimize: isProduction ? true : false,
+    mergeDuplicateChunks: isProduction,
+    minimize: isProduction,
     minimizer: [
       new TerserPlugin({
         cache: true,
         sourceMap: true,
         terserOptions: {
           output: {
-            comments: isProduction ? false : true,
+            comments: !isProduction,
           },
         },
       }),
@@ -89,7 +91,7 @@ module.exports = {
     },
   },
 
-  devtool: isProduction ? 'source-map' : 'eval',
+  devtool: isProduction ? 'source-map' : 'cheap-module-eval-source-map',
 
-  watch: isProduction ? false : true,
+  watch: !isProduction,
 };
