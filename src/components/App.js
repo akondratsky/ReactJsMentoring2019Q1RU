@@ -7,9 +7,12 @@ import { FilmResultsContainer } from 'CommonComponents/FilmResultsContainer';
 export class App extends Component {
   render() {
     return (
-      <div>
+      <div className='page-container'>
         <PageHeader />
-        <FilmResultsContainer />
+        <div className='page-container__content'>
+          <FilmResultsContainer />
+        </div>
+
         <PageFooter />
       </div>
     );

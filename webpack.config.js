@@ -24,7 +24,7 @@ module.exports = {
     alias: {
       CommonComponents: path.resolve(__dirname, 'src/components/common'),
       CommonStyles: path.resolve(__dirname, 'src/common-styles/main.scss'),
-    }
+    },
   },
 
   plugins: [
@@ -57,6 +57,10 @@ module.exports = {
           'css-loader',
           'sass-loader',
         ],
+      },
+      {
+        test: /\.jpg$/,
+        use: 'file-loader',
       },
     ],
   },

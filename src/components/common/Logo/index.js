@@ -3,6 +3,6 @@ import './styles.scss';
 
 export const Logo = (props) => {
   return (
-    <div className='logo'>netflixroulette</div>
+    <h1 className='logo'>netflixroulette</h1>
   );
-}
+};

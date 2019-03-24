@@ -1,5 +1,23 @@
 @import '~CommonStyles';
 
-.app-component-header {
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
 
+
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: $main-bg-color;
+
+  &__content {
+    padding: 30px 50px 50px 50px;
+    flex-grow: 1;
+    background-color: $light-bg-color;
+  }
 }
