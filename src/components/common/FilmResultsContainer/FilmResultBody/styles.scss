@@ -1,0 +1,26 @@
+@import '~CommonStyles';
+
+.film-result-body {
+  width: 30%;
+
+  &__header {
+    display: flex;
+    padding: 5px 0 5px;
+    justify-content: space-between;
+  }
+
+  &__title {
+    font-weight: 900;
+  }
+
+  &__date {
+    padding: 0 5px;
+    border: 1px solid $main-bg-color;
+  }
+
+  &__genre {
+    display: block;
+    padding: 0 0 30px 0;
+    color: $muted-text-color;
+  }
+}

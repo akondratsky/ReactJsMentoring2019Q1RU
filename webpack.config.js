@@ -96,6 +96,7 @@ module.exports = {
     port: 8080,
     proxy: {
       '/api/movies': 'http://localhost:3000',
+      '/assets': 'http://localhost:3000',
     },
   },
 

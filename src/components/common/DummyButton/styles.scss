@@ -1,0 +1,19 @@
+@import '~CommonStyles';
+
+.button {
+  padding: 5px 10px;
+  margin: 10px;
+  
+  text-transform: uppercase;
+  color: $light-text-color;
+  
+  border: none;
+
+  &-active {
+    background-color: $active-color;
+  }
+
+  &-inactive {
+    background-color: $inactive-color;
+  }
+}
