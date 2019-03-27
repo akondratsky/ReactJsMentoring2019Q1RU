@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import { DummyInput } from 'CommonComponents/DummyInput';
-import { DummyButton } from 'CommonComponents/DummyButton';
+import { Switcher } from 'CommonComponents/Switcher';
 import './styles.scss';
 
+
 export class SearchInput extends Component {
+  handler = (str) => {
+    console.log(str);
+  }
+
   render() {
     return (
       <div className='search-input'>
         <DummyInput />
-        <DummyButton text='My Button' size='100px' isActive={false} />
+        <Switcher variants={['First', 'Second']} default='First' onChange={this.handler} />
       </div>
     );
   };

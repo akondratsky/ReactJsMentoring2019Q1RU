@@ -1,0 +1,10 @@
+.switcher {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+
+  &__button {
+    flex-grow: 1;
+    margin-left: 10px;
+  }
+}
