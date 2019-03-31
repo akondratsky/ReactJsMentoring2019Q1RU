@@ -6,8 +6,6 @@ export const DummyInput = () => {
     <div className='input'>
       <span className='input__icon'>&#8629;</span>
       <input className='input__text' type='text' />
-
     </div>
-
   );
 };

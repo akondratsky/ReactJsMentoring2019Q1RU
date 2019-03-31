@@ -6,9 +6,7 @@ import './styles.scss';
 
 
 export class SearchInput extends Component {
-  handler = (str) => {
-    console.log(str);
-  }
+  handler = (str) => {}
 
   render() {
     return (
@@ -19,7 +17,6 @@ export class SearchInput extends Component {
           <div className='search-input__switcher'><Switcher variants={['title', 'genre']} default='title' onChange={this.handler} /></div>
           <div className='search-input__submit'><DummyButton text='Search' isActive={true} width='100px' /></div>
         </div>
-
       </div>
     );
   };

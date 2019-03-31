@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SearchInput /> should be rendered correctly 1`] = `
+<div
+  className="search-input"
+>
+  <div
+    className="search-input__input"
+  >
+    <DummyInput />
+  </div>
+  <div
+    className="search-input__controls"
+  >
+    <span
+      className="search-input__text"
+    >
+      Search by
+    </span>
+    <div
+      className="search-input__switcher"
+    >
+      <Switcher
+        default="title"
+        onChange={[Function]}
+        variants={
+          Array [
+            "title",
+            "genre",
+          ]
+        }
+      />
+    </div>
+    <div
+      className="search-input__submit"
+    >
+      <DummyButton
+        isActive={true}
+        text="Search"
+        width="100px"
+      />
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App /> should be rendered correctly 1`] = `
+<AppErrorBoundary>
+  <div
+    className="page-container"
+  >
+    <PageHeader />
+    <div
+      className="page-container__content"
+    >
+      <FilmResultsContainer />
+    </div>
+    <PageFooter />
+  </div>
+</AppErrorBoundary>
+`;

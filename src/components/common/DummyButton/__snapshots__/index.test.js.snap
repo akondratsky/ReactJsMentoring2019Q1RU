@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DummyButton /> should be rendered correctly 1`] = `
+<input
+  className="button button-inactive"
+  style={Object {}}
+  type="button"
+/>
+`;

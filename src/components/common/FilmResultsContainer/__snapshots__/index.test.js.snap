@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FilmReslutsContainer /> rendered correctly 1`] = `
+<div
+  className="film-results-container"
+>
+  <FilmResultBody
+    filmResult={
+      Object {
+        "Genre": "Drama",
+        "Id": 0,
+        "Image": "assets/film1.jpg",
+        "ReleaseDate": 2000,
+        "Title": "First film",
+      }
+    }
+    key="0"
+  />
+  <FilmResultBody
+    filmResult={
+      Object {
+        "Genre": "Comedia",
+        "Id": 1,
+        "Image": "assets/film2.jpg",
+        "ReleaseDate": 2000,
+        "Title": "Second film",
+      }
+    }
+    key="1"
+  />
+  <FilmResultBody
+    filmResult={
+      Object {
+        "Genre": "Wtf",
+        "Id": 2,
+        "Image": "assets/film3.jpg",
+        "ReleaseDate": 2000,
+        "Title": "Third film",
+      }
+    }
+    key="2"
+  />
+  <FilmResultBody
+    filmResult={
+      Object {
+        "Genre": "Wtf",
+        "Id": 3,
+        "Image": "assets/film4.jpg",
+        "ReleaseDate": 2000,
+        "Title": "Third film",
+      }
+    }
+    key="3"
+  />
+  <FilmResultBody
+    filmResult={
+      Object {
+        "Genre": "Wtf",
+        "Id": 4,
+        "Image": "assets/film5.jpg",
+        "ReleaseDate": 2000,
+        "Title": "Third film",
+      }
+    }
+    key="4"
+  />
+  <FilmResultBody
+    filmResult={
+      Object {
+        "Genre": "Wtf",
+        "Id": 5,
+        "Image": "assets/film6.jpg",
+        "ReleaseDate": 2000,
+        "Title": "Third film",
+      }
+    }
+    key="5"
+  />
+  <FilmResultBody
+    filmResult={
+      Object {
+        "Genre": "Wtf",
+        "Id": 6,
+        "Image": "assets/film7.jpg",
+        "ReleaseDate": 2000,
+        "Title": "Third film",
+      }
+    }
+    key="6"
+  />
+  <FilmResultBody
+    filmResult={
+      Object {
+        "Genre": "Wtf",
+        "Id": 7,
+        "Image": "assets/film8.jpg",
+        "ReleaseDate": 2000,
+        "Title": "Third film",
+      }
+    }
+    key="7"
+  />
+  <FilmResultBody
+    filmResult={
+      Object {
+        "Genre": "Wtf",
+        "Id": 8,
+        "Image": "assets/film9.jpg",
+        "ReleaseDate": 2000,
+        "Title": "Third film",
+      }
+    }
+    key="8"
+  />
+</div>
+`;

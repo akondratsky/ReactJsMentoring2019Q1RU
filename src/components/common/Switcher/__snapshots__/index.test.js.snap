@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Switcher /> should be rendered correctly 1`] = `
+<Switcher
+  default="First"
+  variants={
+    Array [
+      "First",
+      "Second",
+    ]
+  }
+>
+  <div
+    className="switcher"
+  >
+    <div
+      className="switcher__button"
+      key="First"
+    >
+      <DummyButton
+        isActive={true}
+        onClick={[Function]}
+        text="First"
+        width="100%"
+      >
+        <input
+          className="button button-active"
+          onClick={[Function]}
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+          type="button"
+          value="First"
+        />
+      </DummyButton>
+    </div>
+    <div
+      className="switcher__button"
+      key="Second"
+    >
+      <DummyButton
+        isActive={false}
+        onClick={[Function]}
+        text="Second"
+        width="100%"
+      >
+        <input
+          className="button button-inactive"
+          onClick={[Function]}
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+          type="button"
+          value="Second"
+        />
+      </DummyButton>
+    </div>
+  </div>
+</Switcher>
+`;

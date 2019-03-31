@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FilmResultImage /> should be rendered correcly 1`] = `
+<div>
+  <img
+    className="film-result-image"
+  />
+</div>
+`;

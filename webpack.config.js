@@ -4,8 +4,6 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-console.log(process.env.ENV_MODE);
-
 const mode = process.env.ENV_MODE || 'development';
 const isProduction = mode == 'production';
 

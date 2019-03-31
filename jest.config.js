@@ -32,12 +32,12 @@ module.exports = {
   // ],
 
   // A list of reporter names that Jest uses when writing coverage reports
-  // coverageReporters: [
-  //   "json",
-  //   "text",
-  //   "lcov",
-  //   "clover"
-  // ],
+  coverageReporters: [
+    // "json",
+    // "text",
+    "lcov",
+    // "clover"
+  ],
 
   // An object that configures minimum threshold enforcement for coverage results
   // coverageThreshold: null,
@@ -106,6 +106,10 @@ module.exports = {
 
   // A path to a custom resolver
   resolver: "jest-webpack-resolver",
+  jestWebpackResolver: {
+    silent: true,
+    webpackConfig: "./webpack.config.js"
+  },
 
   // Automatically restore mock state between every test
   // restoreMocks: false,
@@ -122,16 +126,20 @@ module.exports = {
   // runner: "jest-runner",
 
   // The paths to modules that run some code to configure or set up the testing environment before each test
-  // setupFiles: [],
+  setupFiles: ["./jest.setup.js"],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
   // setupFilesAfterEnv: [],
 
   // A list of paths to snapshot serializer modules Jest should use for snapshot testing
-  // snapshotSerializers: [],
+  snapshotSerializers: ["enzyme-to-json/serializer"],
 
   // The test environment that will be used for testing
-  testEnvironment: "node",
+  setupFilesAfterEnv: ["jest-enzyme"],
+  testEnvironment: "enzyme",
+  testEnvironmentOptions: {
+    enzymeAdapter: "react16"
+  }
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},

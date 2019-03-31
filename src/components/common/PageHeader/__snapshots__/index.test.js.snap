@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PageHeader /> should be rendered correctly 1`] = `
+<header
+  className="page-header"
+>
+  <div
+    className="page-header__background"
+  />
+  <div
+    className="page-header__container"
+  >
+    <Logo />
+    <SearchPanel />
+  </div>
+</header>
+`;

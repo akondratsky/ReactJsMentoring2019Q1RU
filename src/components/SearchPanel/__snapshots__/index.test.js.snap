@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SearchPanel /> should be rendered correctly 1`] = `
+<Fragment>
+  <h3
+    className="search-panel__header"
+  >
+    FIND YOUR MOVIE
+  </h3>
+  <SearchInput />
+</Fragment>
+`;
