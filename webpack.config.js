@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const mode = process.env.ENV_MODE || 'development';
 const isProduction = mode == 'production';
@@ -36,6 +37,13 @@ module.exports = {
     isProduction && new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css',
+    }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: isProduction ? 'static' : 'server',
+      reportFilename: 'BundleAnalyzerReport.html',
+      openAnalyzer: false,
+      analyzerHost: 'localhost',
+      analyzerPort: 8888,
     }),
   ].filter(Boolean),
 
@@ -82,9 +90,9 @@ module.exports = {
     removeEmptyChunks: true,
     splitChunks: {
       chunks: 'all',
-      minChunks: 2,
-      // minSize: 1024,
-      // maxSize: 1024 * 500,
+      minChunks: 10,
+      minSize: 1024,
+      maxSize: 1024 * 1000,
     },
   },
 

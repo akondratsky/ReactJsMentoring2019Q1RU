@@ -7,6 +7,5 @@ export const PageFooter = (props) => {
     <footer className='page-footer'>
       <Logo/>
     </footer>
-
   );
 };

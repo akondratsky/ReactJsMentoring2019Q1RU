@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { DummyButton } from 'CommonComponents/DummyButton';
 import './styles.scss';
 
 export class Switcher extends Component {
   constructor(props) {
     super(props);
-    this.variants = props.variants;
-    this.onChange = props.onChange;
+    const { onChange } = props;
     this.state = {
       currentActive: props.default,
-      onChange: props.onChange,
+      onChange
     };
   }
 
@@ -23,29 +23,31 @@ export class Switcher extends Component {
     }
 
     if (this.state.onChange) {
-      this.onChange(current);
+      this.state.onChange(current);
     }
   }
 
   render() {
-    const buttons = [];
-
-    this.variants.forEach((variantName) => {
-      let isActive = false;
-      if (variantName === this.state.currentActive) {
-        isActive = true;
-      }
-      buttons.push(
-          <div className='switcher__button' key={variantName}>
-            <DummyButton text={variantName} width='100%' onClick={this.btnClickHandler} isActive={isActive} />
-          </div>
-      );
-    });
-
+    const { variants = [] } = this.props;
+ 
     return (
       <div className='switcher'>
-        { buttons }
+        { variants.map((variantName) =>
+          <div className='switcher__button' key={variantName}>
+            <DummyButton
+              text={variantName}
+              width='100%'
+              onClick={this.btnClickHandler}
+              isActive={variantName === this.state.currentActive} />
+          </div>
+        ) }
       </div>
     );
   }
+};
+
+Switcher.propTypes = {
+  onChange: PropTypes.func,
+  'default': PropTypes.string,
+  variants: PropTypes.arrayOf(PropTypes.string)
 };
