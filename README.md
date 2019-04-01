@@ -1,11 +1,11 @@
 # ReactJs Global Mentoring Program 2019Q1RU Homework
 
-## Task #2
+## Task #4
 
-`npm run server` to start back-end (node.js)
-
-`npm run dev` to start WebpackDevServer
+`npm run dev` to start webpack watcher and node server
 
 `npm run prod` for production build
 
-`npm run test` to start testing with jest
+`npm run test` to start unit tests
+
+`npm run e2e` to run end-to-end tests

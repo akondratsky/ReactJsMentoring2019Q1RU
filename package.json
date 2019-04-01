@@ -4,12 +4,12 @@
   "description": "homework tasks",
   "main": "index.js",
   "scripts": {
-    "dev": "npx cross-env ENV_MODE=development webpack-dev-server",
-    "server": "node ./src/server-side/index.js",
-    "win-server": "cmd.exe -new_console /c node ./src/server-side/index.js",
-    "prod": "npx cross-env ENV_MODE=production webpack",
+    "dev": "npm-run-all --parallel fe-server be-server",
+    "fe-server": "cross-env ENV_MODE=development webpack-dev-server",
+    "be-server": "node ./src/server-side/index.js",
+    "prod": "cross-env ENV_MODE=production webpack",
     "test": "jest",
-    "e2e": "npx cypress open"
+    "e2e": "cypress open"
   },
   "repository": {
     "type": "git",
@@ -58,6 +58,7 @@
     "jest-webpack-resolver": "^0.3.0",
     "mini-css-extract-plugin": "^0.5.0",
     "node-sass": "^4.11.0",
+    "npm-run-all": "^4.1.5",
     "redux-devtools": "^3.5.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
