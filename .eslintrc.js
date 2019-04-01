@@ -7,8 +7,12 @@ module.exports = {
     'browser': true,
     'es6': true,
     'node': true,
+    'cypress/globals': true
   },
-  'extends': 'google',
+  'extends': [
+    'google',
+    'plugin:cypress/recommended'
+  ],
   'globals': {
     'Atomics': 'readonly',
     'SharedArrayBuffer': 'readonly',
@@ -23,7 +27,8 @@ module.exports = {
   },
   'plugins': [
     'react',
-    'jsx'
+    'jsx',
+    'cypress'
   ],
   'rules': {
     'linebreak-style': [ error, 'windows' ],
