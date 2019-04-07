@@ -15,11 +15,11 @@ class FilmResults extends Component {
 
   render() {
     if (this.props.hasErrored) {
-      return <h1>Ooops, there is an error</h1>
+      return <h1>Ooops, there is an error</h1>;
     }
 
     if (this.props.isLoading) {
-      return <span>loading...</span>
+      return <span>loading...</span>;
     }
 
     return (
@@ -34,12 +34,12 @@ class FilmResults extends Component {
 
 const mapStateToProps = (state) => ({
   films: state.films,
-  hasErrored: state.itemsHasErrored,
-  isLoading: state.itemsIsLoading,
+  hasErrored: state.filmsHasErrored,
+  isLoading: state.filmsIsLoading,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchData: () => dispatch(filmsFetchData())
+  fetchData: () => dispatch(filmsFetchData()),
 });
 
 export const FilmResultsContainer = connect(mapStateToProps, mapDispatchToProps)(FilmResults);

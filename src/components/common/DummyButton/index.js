@@ -6,7 +6,7 @@ export const DummyButton = ({ width, text, isActive, onClick }) => {
   const style = width ? { width } : {};
   const btnClasses = classNames('button', {
     'button-active': isActive,
-    'button-inactive': !isActive
+    'button-inactive': !isActive,
   });
 
   return (
