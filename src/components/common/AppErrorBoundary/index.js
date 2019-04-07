@@ -12,8 +12,6 @@ export class AppErrorBoundary extends Component {
   }
 
   componentDidCatch(error, info) {
-    console.log(error);
-    console.log(info);
   }
 
   render() {

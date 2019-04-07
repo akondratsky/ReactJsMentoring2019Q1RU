@@ -7,6 +7,6 @@ exports[`<SearchPanel /> should be rendered correctly 1`] = `
   >
     FIND YOUR MOVIE
   </h3>
-  <SearchInput />
+  <Connect(SearchInput) />
 </Fragment>
 `;

@@ -8,7 +8,7 @@ import { setSearchType, setSearchString } from 'Actions/filter';
 import { filmsFetchData } from 'Actions/films';
 
 
-class SearchInputContainer extends Component {
+export class SearchInput extends Component {
   constructor(props) {
     super(props);
   }
@@ -67,4 +67,4 @@ const mapDispatchToProps = (dispatch) => ({
   fetchData: (params) => dispatch(filmsFetchData(params)),
 });
 
-export const SearchInput = connect(mapStateToProps, mapDispatchToProps)(SearchInputContainer);
+export const SearchInputContainer = connect(mapStateToProps, mapDispatchToProps)(SearchInput);

@@ -2,16 +2,28 @@
 
 exports[`<App /> should be rendered correctly 1`] = `
 <AppErrorBoundary>
-  <div
-    className="page-container"
+  <Provider
+    store={
+      Object {
+        "dispatch": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+        Symbol(observable): [Function],
+      }
+    }
   >
-    <PageHeader />
     <div
-      className="page-container__content"
+      className="page-container"
     >
-      <FilmResultsContainer />
+      <PageHeader />
+      <div
+        className="page-container__content"
+      >
+        <Connect(FilmResults) />
+      </div>
+      <PageFooter />
     </div>
-    <PageFooter />
-  </div>
+  </Provider>
 </AppErrorBoundary>
 `;

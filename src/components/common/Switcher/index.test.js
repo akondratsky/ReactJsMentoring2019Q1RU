@@ -5,7 +5,7 @@ describe('<Switcher />', () => {
   test('should be rendered correctly', () => {
     const variantNames = ['First', 'Second'];
     const switcher = mount(
-      <Switcher variants={variantNames} default='First' />
+        <Switcher variants={variantNames} default='First' />
     );
     expect(switcher).toMatchSnapshot();
   });
@@ -13,7 +13,7 @@ describe('<Switcher />', () => {
   test('button activity state is consistent', () => {
     const variantNames = ['One', 'Two', 'Three'];
     const switcher = shallow(
-      <Switcher variants={variantNames} default='One' />
+        <Switcher variants={variantNames} default='One' />
     );
     expect(switcher.childAt(0).childAt(0).prop('isActive')).toBeTruthy();
     expect(switcher.childAt(1).childAt(0).prop('isActive')).toBeFalsy();
@@ -23,7 +23,7 @@ describe('<Switcher />', () => {
   test('button activity state is changing correctly', () => {
     const variantNames = ['One', 'Two', 'Thr'];
     const switcher = mount(
-      <Switcher variants={variantNames} default='One' />
+        <Switcher variants={variantNames} default='One' />
     );
 
     expect(switcher.find('[text="One"]').prop('isActive')).toBeTruthy();
@@ -41,7 +41,7 @@ describe('<Switcher />', () => {
     const variantNames = ['One', 'Two', 'Thr'];
     const onChangeFn = jest.fn();
     const switcher = mount(
-      <Switcher variants={variantNames} default='One' onChange={onChangeFn} />
+        <Switcher variants={variantNames} default='One' onChange={onChangeFn} />
     );
     switcher.find('[text="Two"]').simulate('click');
     expect(onChangeFn).toBeCalledWith('Two');

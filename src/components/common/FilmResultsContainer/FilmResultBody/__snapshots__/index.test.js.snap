@@ -4,30 +4,21 @@ exports[`<FilmResultBody /> should be rendered correctly 1`] = `
 <div
   className="film-result-body"
 >
-  <FilmResultImage
-    imageAlt="First film"
-    imageSrc="assets/film1.jpg"
-  />
+  <FilmResultImage />
   <div
     className="film-result-body__header"
   >
     <span
       className="film-result-body__title"
-    >
-      First film
-    </span>
+    />
     <span
       className="film-result-body__date"
     >
-      <FilmResultReleaseDate
-        date={2000}
-      />
+      <FilmResultReleaseDate />
     </span>
   </div>
   <span
     className="film-result-body__genre"
-  >
-    Drama
-  </span>
+  />
 </div>
 `;

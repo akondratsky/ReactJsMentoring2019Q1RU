@@ -7,7 +7,9 @@ exports[`<SearchInput /> should be rendered correctly 1`] = `
   <div
     className="search-input__input"
   >
-    <DummyInput />
+    <DummyInput
+      onInput={[Function]}
+    />
   </div>
   <div
     className="search-input__controls"
@@ -36,10 +38,17 @@ exports[`<SearchInput /> should be rendered correctly 1`] = `
     >
       <DummyButton
         isActive={true}
+        onClick={[Function]}
         text="Search"
         width="100px"
       />
     </div>
   </div>
 </div>
+`;
+
+exports[`<SearchInput /> with container rendered correctly 1`] = `
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
 `;

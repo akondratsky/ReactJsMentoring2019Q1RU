@@ -4,7 +4,7 @@ import { FilmResultBody } from './FilmResultBody';
 import { connect } from 'react-redux';
 import { filmsFetchData } from 'Actions/films';
 
-class FilmResults extends Component {
+export class FilmResults extends Component {
   constructor(props) {
     super(props);
   }

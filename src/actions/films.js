@@ -18,14 +18,6 @@ export const filmsFetchDataSuccess = ({ data, total, offset, limit }) => ({
   limit,
 });
 
-export const errorAfterTime = () => {
-  ((dispatch) => {
-    setTimeout(() => {
-      dispatch(filmsHasErrored(true));
-    });
-  });
-};
-
 export const filmsFetchData = (params) => (
   (dispatch) => {
     dispatch(filmsIsLoading(true));
@@ -33,11 +25,23 @@ export const filmsFetchData = (params) => (
     let paramsString = '';
 
     if (params) {
-      const { sortBy, sortOrder, search, searchBy, filter, offset, limit } = params;
+      const {
+        sortBy,
+        sortOrder,
+        search,
+        searchBy,
+        // filter,
+        // offset,
+        // limit
+      } = params;
       paramsString = '?';
 
-      if (offset) {
-        paramsString += `offset=${offset}&`;
+      if (search) {
+        paramsString += `search=${search}&`;
+      };
+
+      if (searchBy) {
+        paramsString += `searchBy=${searchBy}&`;
       }
 
       if (sortBy) {
@@ -48,24 +52,20 @@ export const filmsFetchData = (params) => (
         paramsString += `sortOrder=${sortOrder}&`;
       }
 
-      if (search) {
-        paramsString += `search=${search}&`;
-      };
+      // if (offset) {
+      //   paramsString += `offset=${offset}&`;
+      // }
 
-      if (searchBy) {
-        paramsString += `searchBy=${searchBy}&`;
-      }
+      // if (filter) {
+      //   paramsString += `filter=${filter}&`;
+      // }
 
-      if (filter) {
-        paramsString += `filter=${filter}&`;
-      }
-
-      if (limit) {
-        paramsString += `limit=${limit}&`;
-      }
+      // if (limit) {
+      //   paramsString += `limit=${limit}&`;
+      // }
     }
 
-    fetch(ENDPOINT.GET_ALL_MOVIES + paramsString)
+    fetch(ENDPOINT.GET_ALL_MOVIES + encodeURI(paramsString))
         .then((response) => {
           if (!response.ok) {
             throw Error(response.statusText);
