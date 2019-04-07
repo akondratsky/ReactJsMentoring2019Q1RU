@@ -9,14 +9,14 @@ export const FilmResultBody = (props) => {
 
   return (
     <div className='film-result-body'>
-      <FilmResultImage imageSrc={film.Image} imageAlt={film.Title}/>
+      <FilmResultImage imageSrc={film.poster_path} imageAlt={film.title}/>
       <div className='film-result-body__header'>
-        <span className='film-result-body__title'>{film.Title}</span>
+        <span className='film-result-body__title'>{film.title}</span>
         <span className='film-result-body__date'>
-          <FilmResultReleaseDate date={film.ReleaseDate} />
+          <FilmResultReleaseDate date={film.release_date} />
         </span>
       </div>
-      <span className='film-result-body__genre'>{film.Genre}</span>
+      <span className='film-result-body__genre'>{film.genres}</span>
     </div>
   );
 };
