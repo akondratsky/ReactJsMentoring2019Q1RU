@@ -24,6 +24,7 @@ module.exports = {
       CommonComponents: path.resolve(__dirname, 'src/components/common'),
       CommonStyles: path.resolve(__dirname, 'src/common-styles/main.scss'),
       Common: path.resolve(__dirname, 'src/common'),
+      Actions: path.resolve(__dirname, 'src/actions'),
     },
   },
 

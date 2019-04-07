@@ -3,7 +3,10 @@ import { Film } from 'Common/Film';
 export const DEFAULT_POSTER_PATH = 'https://image.tmdb.org/t/p/w500/oIltQs7MPk7VQFG3DJfgC63mShU.jpg';
 
 export const ACTION = {
-  ADD_FILM: 'ADD_FILM'
+  FETCH_FILMS: 'FETCH_FILMS',
+  FILMS_HAS_ERRORED: 'FILMS_HAS_ERRORED',
+  FILMS_IS_LOADING: 'FILMS_IS_LOADING',
+  FILMS_FETCH_DATA_SUCCESS: 'FILMS_FETCH_DATA_SUCCESS',
 };
 
 
@@ -29,4 +32,7 @@ for (let i = 0; i < 20; i++) {
 }
 //#endregion
 export const DEFAULT_FILMS = films;
-console.log(DEFAULT_FILMS);
+
+export const ENDPOINT = {
+  GET_ALL_MOVIES: 'https://reactjs-cdp.herokuapp.com/movies'
+};

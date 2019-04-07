@@ -1,18 +1,28 @@
 import { ACTION, DEFAULT_FILMS } from 'Common/constants';
 
-const initialState = DEFAULT_FILMS;
-
-export const films = (state = initialState, { type, film }) => {
+export const filmsHasErrored = (state = false, { type, hasErrored }) => {
   switch (type) {
-    // case ACTION.ADD_FILM:
-    //   debugger;
-    //   return Object.assign({}, state, {
-    //     films: [
-    //       ...state.films,
-    //       films
-    //     ]
-    //   });
+    case ACTION.FILMS_HAS_ERRORED:
+      return hasErrored;
     default:
-      return initialState;
+      return state;
   }
 };
+
+export const filmsIsLoading = (state = false, { type, isLoading }) => {
+  switch (type) {
+    case ACTION.FILMS_IS_LOADING:
+      return isLoading;
+    default:
+      return state;
+  }
+};
+
+export const films = (state = [], { type, films }) => {
+  switch (type) {
+    case ACTION.FILMS_FETCH_DATA_SUCCESS:
+      return films;
+    default:
+      return state;
+  }
+}
