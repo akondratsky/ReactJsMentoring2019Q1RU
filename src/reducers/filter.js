@@ -1,19 +1,23 @@
 import { ACTION } from 'Common/constants';
 
 export const searchBy = (state = 'title', { type, name }) => {
+  // debugger;
   switch (type) {
     case ACTION.FILTER_TYPE_SETTED:
       return name;
     default:
-      return 'title';
+      return state;
   }
 };
 
 export const search = (state = '', { type, value }) => {
+  // debugger;
   switch (type) {
     case ACTION.FILTER_SETTED:
       return value;
+    case ACTION.FILTER_TYPE_SETTED:
+      return state;
     default:
-      return '';
+      return state;
   }
 };

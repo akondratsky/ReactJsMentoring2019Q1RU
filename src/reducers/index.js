@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { films, filmsHasErrored, filmsIsLoading } from './films';
 import { search, searchBy } from './filter';
+import { persistReducer } from './persist';
 
 export const rootReducer = combineReducers({
   films,
@@ -8,4 +9,5 @@ export const rootReducer = combineReducers({
   filmsIsLoading,
   searchBy,
   search,
+  persistReducer,
 });

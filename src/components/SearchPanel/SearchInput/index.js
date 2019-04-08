@@ -32,7 +32,7 @@ export class SearchInput extends Component {
     return (
       <div className='search-input'>
         <div className='search-input__input'>
-          <DummyInput onInput={this.inputHandler.bind(this)} />
+          <DummyInput onInput={this.inputHandler.bind(this)} value={this.props.search} />
         </div>
         <div className='search-input__controls'>
           <span className='search-input__text'>
