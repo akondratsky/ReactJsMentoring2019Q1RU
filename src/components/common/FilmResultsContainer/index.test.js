@@ -50,4 +50,15 @@ describe('<FilmReslutsContainer />', () => {
     );
     expect(filmResultsContainerWithError).toMatchSnapshot();
   });
+
+  test('calls fetchData if films.length === 0', () => {
+    const fetchDataMockFn = jest.fn();
+    const films = [];
+
+    const filmResultsContainerWithError = shallow(
+        <FilmResults isLoading={true} fetchData={fetchDataMockFn} films={films} />
+    );
+
+    expect(fetchDataMockFn).toBeCalled();
+  });
 });

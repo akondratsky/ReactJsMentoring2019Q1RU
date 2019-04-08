@@ -13,17 +13,34 @@ exports[`<App /> should be rendered correctly 1`] = `
       }
     }
   >
-    <div
-      className="page-container"
+    <PersistGate
+      loading={null}
+      persistor={
+        Object {
+          "dispatch": [Function],
+          "flush": [Function],
+          "getState": [Function],
+          "pause": [Function],
+          "persist": [Function],
+          "purge": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+          Symbol(observable): [Function],
+        }
+      }
     >
-      <PageHeader />
       <div
-        className="page-container__content"
+        className="page-container"
       >
-        <Connect(FilmResults) />
+        <PageHeader />
+        <div
+          className="page-container__content"
+        >
+          <Connect(FilmResults) />
+        </div>
+        <PageFooter />
       </div>
-      <PageFooter />
-    </div>
+    </PersistGate>
   </Provider>
 </AppErrorBoundary>
 `;

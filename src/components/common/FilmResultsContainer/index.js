@@ -10,7 +10,7 @@ export class FilmResults extends Component {
   }
 
   componentDidMount() {
-    if (!this.props.films || this.props.films.lenght === 0) {
+    if (!this.props.films || this.props.films.length === 0) {
       this.props.fetchData();
     }
   }
