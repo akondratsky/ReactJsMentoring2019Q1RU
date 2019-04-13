@@ -1,5 +1,5 @@
 import { ACTION } from 'Common/constants';
-import { search, searchBy } from './filter';
+import { search, searchBy, sortBy } from './filter';
 
 describe('filter reducers', () => {
   it('FILTER_TYPE_SETTED', () => {
@@ -36,6 +36,27 @@ describe('filter reducers', () => {
     actions.forEach((action) => {
       stateStubs.forEach((state) => {
         expect( search(state, action) ).toEqual(action.value);
+      });
+    });
+  });
+
+
+  it('SORTING_BY_SETTED', () => {
+    const actions = [
+      { type: ACTION.SORTING_BY_SETTED, typeName: 'rating' },
+      { type: ACTION.SORTING_BY_SETTED, typeName: 'release_date' },
+    ];
+
+    const stateStubs = [
+      { sortBy: 'rating' },
+      { sortBy: '124214' },
+      { sortBy: 'release_date' },
+      { sortBy: 'wrfa' },
+    ];
+
+    actions.forEach((action) => {
+      stateStubs.forEach((state) => {
+        expect( sortBy(state, action) ).toEqual(action.typeName);
       });
     });
   });

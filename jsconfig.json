@@ -7,5 +7,10 @@
       "Common/*": ["./src/common/*"],
       "Actions/*": ["./src/actions/*"]
     }
+  },
+  "typeAcquisition": {
+    "include": [
+      "jest"
+    ]
   }
 }

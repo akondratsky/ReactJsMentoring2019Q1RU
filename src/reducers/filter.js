@@ -13,8 +13,6 @@ export const search = (state = '', { type, value }) => {
   switch (type) {
     case ACTION.FILTER_SETTED:
       return value;
-    case ACTION.FILTER_TYPE_SETTED:
-      return state;
     default:
       return state;
   }

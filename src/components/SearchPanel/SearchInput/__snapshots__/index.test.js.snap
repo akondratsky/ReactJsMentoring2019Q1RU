@@ -47,7 +47,7 @@ exports[`<SearchInput /> should be rendered correctly 1`] = `
 </div>
 `;
 
-exports[`<SearchInput /> with container rendered correctly 1`] = `
+exports[`<SearchInputContainer /> rendered correctly 1`] = `
 <ContextConsumer>
   <Component />
 </ContextConsumer>

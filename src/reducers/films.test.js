@@ -20,6 +20,7 @@ describe('films reducers', () => {
     });
   });
 
+
   it('FILMS_IS_LOADING', () => {
     const actions = [
       { type: ACTION.FILMS_IS_LOADING, isLoading: true },
@@ -38,6 +39,7 @@ describe('films reducers', () => {
     });
   });
 
+
   it('FILMS_FETCH_DATA_SUCCESS', () => {
     const action = {
       type: ACTION.FILMS_FETCH_DATA_SUCCESS,
@@ -48,15 +50,17 @@ describe('films reducers', () => {
     };
 
     const stateStub = {
-      films: [],
-      total: 0,
-      offset: 0,
-      limit: 0,
+      films: {
+        records: [],
+        total: 0,
+        offset: 0,
+        limit: 0,
+      },
     };
 
     const newState = films(stateStub, action);
 
-    expect(newState).toEqual(action.films);
+    expect(newState.records).toEqual(action.films);
     expect(newState.total).toEqual(action.total);
     expect(newState.offset).toEqual(action.offset);
     expect(newState.limit).toEqual(action.limit);

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Switcher } from 'CommonComponents/Switcher';
-import { filmsFetchData } from 'Actions/films';
 import { setSortingBy } from 'Actions/filter';
 import { STRINGS, FILM_FIELD_NAMES } from 'Common/constants';
 import './styles.scss';
