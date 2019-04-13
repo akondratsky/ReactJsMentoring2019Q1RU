@@ -7,8 +7,19 @@ export const ACTION = {
   FILMS_FETCH_DATA_SUCCESS: 'FILMS_FETCH_DATA_SUCCESS',
   FILTER_TYPE_SETTED: 'FILTER_TYPE_SETTED',
   FILTER_SETTED: 'FILTER_SETTED',
+  SORTING_BY_SETTED: 'SORTING_SETTED',
 };
 
 export const ENDPOINT = {
   GET_ALL_MOVIES: 'https://reactjs-cdp.herokuapp.com/movies',
+};
+
+export const STRINGS = {
+  RELEASE_DATE: 'release date',
+  RATING: 'rating',
+};
+
+export const FILM_FIELD_NAMES = {
+  RATING: 'rating',
+  RELEASE_DATE: 'release_date',
 };

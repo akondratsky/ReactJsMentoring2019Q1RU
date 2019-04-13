@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { SearchInputContainer } from './SearchInput';
-
 import './styles.scss';
+
 
 export class SearchPanel extends Component {
   render() {

@@ -1,0 +1,25 @@
+@import '~CommonStyles';
+
+.search-results {
+  display: flex;
+  padding: 10px 50px 10px 100px;
+  z-index: 10;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: $secondary-bg-color;
+
+  &__found {
+    display: inline-block;
+  }
+
+  &__sorting {
+    display: flex;
+    align-items: center;
+
+    &-header {
+      min-width: 60px;
+      font-weight: 900;
+    }
+  }
+}

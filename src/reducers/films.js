@@ -18,13 +18,22 @@ export const filmsIsLoading = (state = false, { type, isLoading }) => {
   }
 };
 
-export const films = (state = [], { type, films = [], total = 0, offset = 0, limit = 0 }) => {
+const defaultFilmsState = {
+  records: [],
+  total: 0,
+  offset: 0,
+  limit: 10,
+};
+
+export const films = (state = defaultFilmsState, { type, films = [], total = 0, offset = 0, limit = 0 }) => {
   switch (type) {
     case ACTION.FILMS_FETCH_DATA_SUCCESS:
-      films.total = total;
-      films.offset = offset;
-      films.limit = limit;
-      return films;
+      return {
+        records: films,
+        total,
+        offset,
+        limit,
+      };
     default:
       return state;
   }

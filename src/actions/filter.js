@@ -9,3 +9,8 @@ export const setSearchString = (value) => ({
   type: ACTION.FILTER_SETTED,
   value,
 });
+
+export const setSortingBy = (typeName) => ({
+  type: ACTION.SORTING_BY_SETTED,
+  typeName,
+});

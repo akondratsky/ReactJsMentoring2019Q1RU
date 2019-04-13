@@ -26,7 +26,7 @@ export class FilmResults extends Component {
 
     return (
       <div className='film-results-container'>
-        {this.props.films.map((film) => (
+        {this.props.films.records.map((film) => (
           <FilmResultBody key={film.id} filmResult={film} />
         ))}
       </div>

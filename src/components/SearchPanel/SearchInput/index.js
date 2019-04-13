@@ -25,6 +25,8 @@ export class SearchInput extends Component {
     this.props.fetchData({
       search: this.props.search,
       searchBy: this.props.searchBy,
+      sortBy: this.props.sortBy,
+      sortOrder: 'asc',
     });
   }
 
@@ -59,6 +61,7 @@ export class SearchInput extends Component {
 const mapStateToProps = (state) => ({
   search: state.search,
   searchBy: state.searchBy,
+  sortBy: state.sortBy,
 });
 
 const mapDispatchToProps = (dispatch) => ({

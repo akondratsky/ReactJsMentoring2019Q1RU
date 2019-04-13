@@ -9,7 +9,7 @@ export class Switcher extends Component {
     const { onChange } = props;
     this.state = {
       currentActive: props.default,
-      onChange
+      onChange,
     };
   }
 
@@ -28,8 +28,8 @@ export class Switcher extends Component {
   }
 
   render() {
-    const { variants = [] } = this.props;
- 
+    const { variants = [], isLight } = this.props;
+
     return (
       <div className='switcher'>
         { variants.map((variantName) =>
@@ -38,7 +38,8 @@ export class Switcher extends Component {
               text={variantName}
               width='100%'
               onClick={this.btnClickHandler}
-              isActive={variantName === this.state.currentActive} />
+              isActive={variantName === this.state.currentActive}
+              isLight={isLight} />
           </div>
         ) }
       </div>
@@ -47,7 +48,8 @@ export class Switcher extends Component {
 };
 
 Switcher.propTypes = {
-  onChange: PropTypes.func,
+  'isLight': PropTypes.bool,
+  'onChange': PropTypes.func,
   'default': PropTypes.string,
-  variants: PropTypes.arrayOf(PropTypes.string)
+  'variants': PropTypes.arrayOf(PropTypes.string),
 };

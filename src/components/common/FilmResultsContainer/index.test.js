@@ -55,7 +55,7 @@ describe('<FilmReslutsContainer />', () => {
     const fetchDataMockFn = jest.fn();
     const films = [];
 
-    const filmResultsContainerWithError = shallow(
+    shallow(
         <FilmResults isLoading={true} fetchData={fetchDataMockFn} films={films} />
     );
 
