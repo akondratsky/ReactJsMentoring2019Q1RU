@@ -93,7 +93,6 @@ export class SearchInput extends Component {
 }
 
 const mapStateToProps = (state) => {
-  debugger;
   return {
     search: state.search,
     searchBy: state.searchBy,

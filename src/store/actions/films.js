@@ -20,12 +20,12 @@ export const filmsFetchDataSuccess = ({ data, total, offset, limit }) => ({
 
 export const filmsFetchData = (params) => (
   (dispatch) => {
+    dispatch(filmsHasErrored(false));
     dispatch(filmsIsLoading(true));
 
     let paramsString = '';
 
     if (params) {
-      debugger;
       const {
         sortBy,
         sortOrder,
