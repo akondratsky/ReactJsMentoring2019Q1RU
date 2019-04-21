@@ -4,6 +4,7 @@ import { withRouter } from 'react-router';
 import { Redirect } from 'react-router-dom';
 
 import { fetchFilmById } from '@actions/films';
+import { NotFound } from '@src/components/NotFound';
 
 const mapStateToProps = (state) => {
   return {
@@ -24,10 +25,10 @@ export class SingleFilm extends Component {
     }
 
     if (match.params.id !== film.id) {
-      debugger;
       this.props.fetchFilm(+match.params.id);
     }
   }
+
   render() {
     const { match, isLoading, film } = this.props;
     if (!match.params.id) {
@@ -36,6 +37,10 @@ export class SingleFilm extends Component {
 
     if (isLoading) {
       return <div>Loading...</div>;
+    }
+
+    if (!film.id) {
+      return <NotFound />;
     }
 
     return (

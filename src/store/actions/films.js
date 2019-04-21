@@ -88,7 +88,6 @@ export const filmFetchedSuccessfully = (film) => ({
 });
 
 export const fetchFilmById = (id) => (dispatch, getStore) => {
-  debugger;
   dispatch(filmsHasErrored(false));
   dispatch(filmsIsLoading(true));
 
