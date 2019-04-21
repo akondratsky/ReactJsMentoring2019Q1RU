@@ -5,6 +5,7 @@ export const ACTION = {
   FILMS_HAS_ERRORED: 'FILMS_HAS_ERRORED',
   FILMS_IS_LOADING: 'FILMS_IS_LOADING',
   FILMS_FETCH_DATA_SUCCESS: 'FILMS_FETCH_DATA_SUCCESS',
+  FILM_FETCHED_SUCCESSFULLY: 'FILM_FETCHED_SUCCESSFULLY',
   FILTER_TYPE_SETTED: 'FILTER_TYPE_SETTED',
   FILTER_SETTED: 'FILTER_SETTED',
   SORTING_BY_SETTED: 'SORTING_SETTED',
@@ -12,6 +13,7 @@ export const ACTION = {
 
 export const ENDPOINT = {
   GET_ALL_MOVIES: 'https://reactjs-cdp.herokuapp.com/movies',
+  GET_MOVIE: 'https://reactjs-cdp.herokuapp.com/movies/',
 };
 
 export const STRINGS = {

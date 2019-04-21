@@ -38,3 +38,12 @@ export const films = (state = defaultFilmsState, { type, films = [], total = 0, 
       return state;
   }
 };
+
+export const film = (state = {}, { type, film }) => {
+  switch (type) {
+    case ACTION.FILM_FETCHED_SUCCESSFULLY:
+      return film;
+    default:
+      return state;
+  }
+};

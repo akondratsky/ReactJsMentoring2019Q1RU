@@ -81,3 +81,28 @@ export const filmsFetchData = (params) => (
         .catch(() => dispatch(filmsHasErrored(true)));
   }
 );
+
+export const filmFetchedSuccessfully = (film) => ({
+  type: ACTION.FILM_FETCHED_SUCCESSFULLY,
+  film,
+});
+
+export const fetchFilmById = (id) => (dispatch, getStore) => {
+  debugger;
+  dispatch(filmsHasErrored(false));
+  dispatch(filmsIsLoading(true));
+
+  fetch(ENDPOINT.GET_MOVIE + id)
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        dispatch(filmsIsLoading(false));
+        return response;
+      })
+      .then((response) => response.json())
+      .then((film) => {
+        dispatch(filmFetchedSuccessfully(film));
+      })
+      .catch(() => dispatch(filmsHasErrored(true)));
+};

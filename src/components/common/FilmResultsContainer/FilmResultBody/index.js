@@ -8,6 +8,7 @@ import './styles.scss';
 export class FilmResultBody extends Component {
   handleRedirect = () => {
     this.props.history.push(`/film/${this.props.filmResult.id}`);
+    this.props.onClick(this.props.filmResult.id);
   }
 
   render() {

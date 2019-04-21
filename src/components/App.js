@@ -24,10 +24,10 @@ export class App extends Component {
                 <PageHeader />
                 <div className='page-container__content'>
                   <Switch>
-                    <Route exact path={['/search/:searchString', '/']} component={FilmResultsContainer} />
+                    <Route exact path={['/search/:searchString', '/search/', '/search', '/']} component={FilmResultsContainer} />
                     <Route exact path='/film/:id?' component={SingleFilmContainer} />
                     <Route path='/404' component={NotFound} />
-                    {/* <Route component={NotFound} /> */}
+                    <Route component={NotFound} />
                   </Switch>
                 </div>
                 <PageFooter />
