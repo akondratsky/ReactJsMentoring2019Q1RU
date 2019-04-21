@@ -1,22 +1,31 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { FilmResultImage } from './FilmResultImage';
 import { FilmResultReleaseDate } from './FilmResultReleaseDate';
+import { withRouter } from 'react-router-dom';
 import './styles.scss';
 
 
-export const FilmResultBody = (props) => {
-  const film = props.filmResult;
+export class FilmResultBody extends Component {
+  handleRedirect = () => {
+    this.props.history.push(`/film/${this.props.filmResult.id}`);
+  }
 
-  return (
-    <div className='film-result-body'>
-      <FilmResultImage imageSrc={film.poster_path} imageAlt={film.title}/>
-      <div className='film-result-body__header'>
-        <span className='film-result-body__title'>{film.title}</span>
-        <span className='film-result-body__date'>
-          <FilmResultReleaseDate date={film.release_date} />
-        </span>
+  render() {
+    const film = this.props.filmResult;
+
+    return (
+      <div className='film-result-body' onClick={this.handleRedirect}>
+        <FilmResultImage imageSrc={film.poster_path} imageAlt={film.title}/>
+        <div className='film-result-body__header'>
+          <span className='film-result-body__title'>{film.title}</span>
+          <span className='film-result-body__date'>
+            <FilmResultReleaseDate date={film.release_date} />
+          </span>
+        </div>
+        <span className='film-result-body__genre'>{film.genres}</span>
       </div>
-      <span className='film-result-body__genre'>{film.genres}</span>
-    </div>
-  );
+    );
+  }
 };
+
+export const FilmResultBodyContainer = withRouter(FilmResultBody);

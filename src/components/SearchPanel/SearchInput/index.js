@@ -1,16 +1,41 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
+
 import { DummyInput } from 'CommonComponents/DummyInput';
 import { DummyButton } from 'CommonComponents/DummyButton';
 import { Switcher } from 'CommonComponents/Switcher';
-import './styles.scss';
-import { connect } from 'react-redux';
-import { setSearchType, setSearchString } from 'Actions/filter';
-import { filmsFetchData } from 'Actions/films';
 
+import { setSearchType, setSearchString } from '@actions/filter';
+import { filmsFetchData } from '@actions/films';
+
+import './styles.scss';
 
 export class SearchInput extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      search: '',
+    };
+  }
+
+  componentDidMount() {
+    const { searchString } = this.props.match.params;
+    const decodedSearch = decodeURI(searchString);
+    if (searchString) {
+      this.setState({
+        search: searchString,
+      });
+
+      const { searchBy, sortBy } = this.props;
+
+      this.props.fetchData({
+        search: decodedSearch,
+        searchBy,
+        sortBy,
+        sortOrder: 'asc',
+      });
+    }
   }
 
   typeChangeHandler = (str) => {
@@ -19,22 +44,31 @@ export class SearchInput extends Component {
 
   inputHandler = (e) => {
     this.props.setSearchValue(e.target.value);
-  }
-
-  onSubmit = () => {
-    this.props.fetchData({
-      search: this.props.search,
-      searchBy: this.props.searchBy,
-      sortBy: this.props.sortBy,
-      sortOrder: 'asc',
+    this.setState({
+      search: e.target.value,
     });
   }
 
+  onSubmit = () => {
+    const { search, searchBy, sortBy } = this.props;
+
+    this.props.fetchData({
+      search: this.state.search,
+      searchBy,
+      sortBy,
+      sortOrder: 'asc',
+    });
+
+    this.props.history.push(`/search/${encodeURI(search)}`);
+  }
+
   render() {
+    const { search } = this.state;
+
     return (
       <div className='search-input'>
         <div className='search-input__input'>
-          <DummyInput onInput={this.inputHandler.bind(this)} value={this.props.search} />
+          <DummyInput onInput={this.inputHandler} value={search} />
         </div>
         <div className='search-input__controls'>
           <span className='search-input__text'>
@@ -44,13 +78,13 @@ export class SearchInput extends Component {
             <Switcher
               variants={['title', 'genre']}
               default='title'
-              onChange={this.typeChangeHandler.bind(this)} />
+              onChange={this.typeChangeHandler} />
           </div>
           <div className='search-input__submit'>
             <DummyButton text='Search'
               isActive={true}
               width='100px'
-              onClick={this.onSubmit.bind(this)} />
+              onClick={this.onSubmit} />
           </div>
         </div>
       </div>
@@ -58,11 +92,14 @@ export class SearchInput extends Component {
   };
 }
 
-const mapStateToProps = (state) => ({
-  search: state.search,
-  searchBy: state.searchBy,
-  sortBy: state.sortBy,
-});
+const mapStateToProps = (state) => {
+  debugger;
+  return {
+    search: state.search,
+    searchBy: state.searchBy,
+    sortBy: state.sortBy,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => ({
   setSearchType: (typeName) => dispatch(setSearchType(typeName)),
@@ -70,4 +107,4 @@ const mapDispatchToProps = (dispatch) => ({
   fetchData: (params) => dispatch(filmsFetchData(params)),
 });
 
-export const SearchInputContainer = connect(mapStateToProps, mapDispatchToProps)(SearchInput);
+export const SearchInputContainer = withRouter( connect(mapStateToProps, mapDispatchToProps)(SearchInput) );

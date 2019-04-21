@@ -1,4 +1,4 @@
-import { ACTION } from 'Common/constants';
+import { ACTION } from '@common/constants';
 
 export const setSearchType = (name) => ({
   type: ACTION.FILTER_TYPE_SETTED,

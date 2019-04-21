@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { SearchResultsContainer, SearchResults } from './index';
 import configureStore from 'redux-mock-store';
 import { ACTION, FILM_FIELD_NAMES, STRINGS } from 'Common/constants';
-import { setSortingBy } from 'Actions/filter';
+import { setSortingBy } from 'src/store/actions/filter';
 
 describe('<SearchResultsContainer />', () => {
   it('should render properly', () => {

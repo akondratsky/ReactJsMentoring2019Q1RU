@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './styles.scss';
 import { Logo } from 'CommonComponents/Logo';
-import { SearchPanel } from '../../SearchPanel';
+import { SearchPanelContainer } from '../../SearchPanel';
 import { SearchResultsContainer } from '../SearchResultsContainer';
 
 export class PageHeader extends Component {
@@ -12,7 +12,7 @@ export class PageHeader extends Component {
           <div className='page-header__background' />
           <div className='page-header__container'>
             <Logo />
-            <SearchPanel />
+            <SearchPanelContainer />
           </div>
         </div>
         <SearchResultsContainer />

@@ -1,28 +1,40 @@
 import React, { Component } from 'react';
+import { Provider } from 'react-redux';
 import './App.scss';
+
 import { AppErrorBoundary } from 'CommonComponents/AppErrorBoundary';
 import { PageHeader } from 'CommonComponents/PageHeader';
 import { PageFooter } from 'CommonComponents/PageFooter';
 import { FilmResultsContainer } from 'CommonComponents/FilmResultsContainer';
-import { Provider } from 'react-redux';
-import { store, persistor } from 'Common/store';
+
+import { store, persistor } from '@store/store';
 import { PersistGate } from 'redux-persist/lib/integration/react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { SingleFilmContainer } from 'CommonComponents/SingleFilmContainer';
+import { NotFound } from './NotFound';
 
 export class App extends Component {
   render() {
     return (
       <AppErrorBoundary>
-        <Provider store={store}>
-          <PersistGate persistor={persistor}>
-            <div className='page-container'>
-              <PageHeader />
-              <div className='page-container__content'>
-                <FilmResultsContainer />
+        <BrowserRouter>
+          <Provider store={store}>
+            <PersistGate persistor={persistor}>
+              <div className='page-container'>
+                <PageHeader />
+                <div className='page-container__content'>
+                  <Switch>
+                    <Route exact path='/search/:searchString?' component={FilmResultsContainer} />
+                    <Route exact path='/film/:id?' component={SingleFilmContainer} />
+                    <Route path='/404' component={NotFound} />
+                    <Route component={NotFound} />
+                  </Switch>
+                </div>
+                <PageFooter />
               </div>
-              <PageFooter />
-            </div>
-          </PersistGate>
-        </Provider>
+            </PersistGate>
+          </Provider>
+        </BrowserRouter>
       </AppErrorBoundary>
     );
   }

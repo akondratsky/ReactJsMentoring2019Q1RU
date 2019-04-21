@@ -4,7 +4,7 @@ import { SearchPanel } from './index';
 describe('<SearchPanel />', () => {
   test('should be rendered correctly', () => {
     const panel = shallow(
-      <SearchPanel />
+        <SearchPanel />
     );
     expect(panel).toMatchSnapshot();
   });

@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
+
 import { Switcher } from 'CommonComponents/Switcher';
-import { setSortingBy } from 'Actions/filter';
-import { STRINGS, FILM_FIELD_NAMES } from 'Common/constants';
+import { STRINGS, FILM_FIELD_NAMES } from '@common/constants';
+import { setSortingBy } from '@actions/filter';
+
 import './styles.scss';
 
 export class SearchResults extends Component {
@@ -11,6 +14,12 @@ export class SearchResults extends Component {
   }
 
   render() {
+    const { pathname } = this.props.location;
+
+    if (pathname !== '/' && !pathname.startsWith('/search')) {
+      return null;
+    }
+
     return (
       <div className='search-results'>
         <div className='search-results__found'>
@@ -63,4 +72,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export const SearchResultsContainer = connect(mapStateToProps, mapDispatchToProps)(SearchResults);
+export const SearchResultsContainer = withRouter( connect(mapStateToProps, mapDispatchToProps)(SearchResults) );

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './styles.scss';
-import { FilmResultBody } from './FilmResultBody';
+import { FilmResultBodyContainer } from './FilmResultBody';
 import { connect } from 'react-redux';
-import { filmsFetchData } from 'Actions/films';
+import { filmsFetchData } from '@actions/films';
 
 export class FilmResults extends Component {
   constructor(props) {
@@ -27,7 +27,7 @@ export class FilmResults extends Component {
     return (
       <div className='film-results-container'>
         {this.props.films.records.map((film) => (
-          <FilmResultBody key={film.id} filmResult={film} />
+          <FilmResultBodyContainer key={film.id} filmResult={film} />
         ))}
       </div>
     );

@@ -5,7 +5,7 @@
     "paths": {
       "CommonComponents/*": ["./src/components/common/*"],
       "Common/*": ["./src/common/*"],
-      "Actions/*": ["./src/actions/*"]
+      "Actions/*": ["src/store/actions/*"]
     }
   },
   "typeAcquisition": {

@@ -1,4 +1,4 @@
-import { ACTION } from 'Common/constants';
+import { ACTION } from '@common/constants';
 
 export const searchBy = (state = 'title', { type, name }) => {
   switch (type) {

@@ -14,6 +14,7 @@ module.exports = {
   entry: './index.js',
 
   output: {
+    publicPath: '/',
     path: path.resolve(__dirname, 'public'),
     filename: '[name].js',
   },
@@ -23,9 +24,10 @@ module.exports = {
     alias: {
       'CommonComponents': path.resolve(__dirname, 'src/components/common'),
       'CommonStyles': path.resolve(__dirname, 'src/common-styles/main.scss'),
-      'Common': path.resolve(__dirname, 'src/common'),
-      'Actions': path.resolve(__dirname, 'src/actions'),
-      '@reducers': path.resolve(__dirname, 'src/reducers'),
+      '@common': path.resolve(__dirname, 'src/common'),
+      '@store': path.resolve(__dirname, 'src/store'),
+      '@actions': path.resolve(__dirname, 'src/store/actions'),
+      '@reducers': path.resolve(__dirname, 'src/store/reducers'),
     },
   },
 
@@ -103,6 +105,7 @@ module.exports = {
     hot: true,
     https: false,
     port: 8080,
+    historyApiFallback: true,
     proxy: {
       '/api/movies': 'http://localhost:3000',
       '/assets': 'http://localhost:3000',
