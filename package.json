@@ -4,10 +4,12 @@
   "description": "homework tasks",
   "main": "index.js",
   "scripts": {
-    "dev": "npm-run-all --parallel fe-server be-server",
-    "fe-server": "cross-env ENV_MODE=development webpack-dev-server",
-    "be-server": "node ./src/server-side/index.js",
-    "prod": "cross-env ENV_MODE=production webpack",
+    "dev": "cross-env ENV_MODE=development node ./src/server-side",
+    "prod": "cross-env ENV_MODE=production webpack --config ./webpack",
+    "old-dev": "npm-run-all --parallel fe-server be-server",
+    "old-fe-server": "cross-env ENV_MODE=development webpack-dev-server",
+    "old-be-server": "node ./src/server-side/index.js",
+    "old-prod": "cross-env ENV_MODE=production webpack",
     "test": "jest",
     "e2e": "cypress open"
   },

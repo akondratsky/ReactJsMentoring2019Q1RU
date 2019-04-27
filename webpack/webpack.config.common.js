@@ -1,21 +1,20 @@
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebPackPlugin = require('html-webpack-plugin');
+// const HtmlWebPackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const mode = process.env.ENV_MODE || 'development';
 const isProduction = mode === 'production';
 
 module.exports = {
-  context: path.resolve(__dirname, 'src'),
-
-  entry: './client.js',
+  context: path.resolve(__dirname, '../src'),
 
   output: {
-    publicPath: '/',
-    path: path.resolve(__dirname, 'public'),
+    // publicPath: '/',
+    path: path.resolve('./public'),
+    // path: path.resolve(__dirname, 'public'),
     filename: '[name].js',
   },
 
@@ -23,22 +22,18 @@ module.exports = {
     extensions: ['.js', '.scss'],
     alias: {
       'react-dom': '@hot-loader/react-dom',
-      'CommonComponents': path.resolve(__dirname, 'src/components/common'),
-      'CommonStyles': path.resolve(__dirname, 'src/common-styles/main.scss'),
-      '@common': path.resolve(__dirname, 'src/common'),
-      '@src': path.resolve(__dirname, 'src'),
-      '@store': path.resolve(__dirname, 'src/store'),
-      '@actions': path.resolve(__dirname, 'src/store/actions'),
-      '@reducers': path.resolve(__dirname, 'src/store/reducers'),
+      'CommonComponents': path.resolve(__dirname, '../src/components/common'),
+      'CommonStyles': path.resolve(__dirname, '../src/common-styles/main.scss'),
+      '@common': path.resolve(__dirname, '../src/common'),
+      '@src': path.resolve(__dirname, '../src'),
+      '@store': path.resolve(__dirname, '../src/store'),
+      '@actions': path.resolve(__dirname, '../src/store/actions'),
+      '@reducers': path.resolve(__dirname, '../src/store/reducers'),
     },
   },
 
   plugins: [
     isProduction ? new webpack.HashedModuleIdsPlugin() : new webpack.NamedModulesPlugin(),
-    new HtmlWebPackPlugin({
-      hash: true,
-      template: './index.html',
-    }),
     new webpack.DefinePlugin({
       DEBUG: !isProduction,
     }),
@@ -46,13 +41,13 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[id].css',
     }),
-    new BundleAnalyzerPlugin({
-      analyzerMode: isProduction ? 'static' : 'server',
-      reportFilename: 'BundleAnalyzerReport.html',
-      openAnalyzer: false,
-      analyzerHost: 'localhost',
-      analyzerPort: 8888,
-    }),
+    // new BundleAnalyzerPlugin({
+    //   analyzerMode: isProduction ? 'static' : 'server',
+    //   reportFilename: 'BundleAnalyzerReport.html',
+    //   openAnalyzer: false,
+    //   analyzerHost: 'localhost',
+    //   analyzerPort: 8888,
+    // }),
   ].filter(Boolean),
 
   module: {
@@ -81,28 +76,30 @@ module.exports = {
 
   mode,
 
-  optimization: {
-    mergeDuplicateChunks: isProduction,
-    minimize: isProduction,
-    minimizer: [
-      new TerserPlugin({
-        cache: true,
-        sourceMap: true,
-        terserOptions: {
-          output: {
-            comments: !isProduction,
-          },
-        },
-      }),
-    ],
-    removeEmptyChunks: true,
-    splitChunks: {
-      chunks: 'all',
-      minChunks: 10,
-      minSize: 1024,
-      maxSize: 1024 * 1000,
-    },
-  },
+  // doesn't work so simply with SSR:
+
+  // optimization: {
+  //   mergeDuplicateChunks: isProduction,
+  //   minimize: isProduction,
+  //   minimizer: [
+  //     new TerserPlugin({
+  //       cache: true,
+  //       sourceMap: true,
+  //       terserOptions: {
+  //         output: {
+  //           comments: !isProduction,
+  //         },
+  //       },
+  //     }),
+  //   ],
+  //   removeEmptyChunks: true,
+  //   splitChunks: {
+  //     chunks: 'all',
+  //     minChunks: 10,
+  //     minSize: 1024,
+  //     maxSize: 1024 * 1000,
+  //   },
+  // },
 
   // devServer: {
   //   hot: true,
