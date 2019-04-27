@@ -61,7 +61,7 @@ const mapStateToProps = (state) => {
   return {
     totalFilms: state.films.total,
     sortBy,
-    genre: state.film.genres ? state.film.genres[0] : '',
+    genre: (state.film && state.film.genres) ? state.film.genres[0] : '',
   };
 };
 

@@ -13,7 +13,7 @@ export class PageHeader extends Component {
   render() {
     const { children, location } = this.props;
     let buttonBlock = null;
-    console.log(this.props);
+
     if (location.pathname.startsWith('/film/')) {
       buttonBlock = (
         <div className='page-header__search-button'>

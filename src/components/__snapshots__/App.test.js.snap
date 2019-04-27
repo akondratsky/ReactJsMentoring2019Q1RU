@@ -33,13 +33,9 @@ exports[`<App /> should be rendered correctly 1`] = `
         <div
           className="page-container"
         >
-          <PageHeader>
-            <Route
-              component={[Function]}
-              exact={true}
-              path="/film/:id?"
-            />
-          </PageHeader>
+          <Route
+            render={[Function]}
+          />
           <div
             className="page-container__content"
           >

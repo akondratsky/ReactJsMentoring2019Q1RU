@@ -62,6 +62,9 @@ describe('<SearchResultsContainer />', () => {
     films: {
       total: 13,
     },
+    film: {
+      genres: ['Action'],
+    },
     sortBy: 'rating',
   };
 
@@ -69,7 +72,7 @@ describe('<SearchResultsContainer />', () => {
     const store = mockStore(defaultStore);
     const wrapper = mount(
         <Provider store={store}>
-          <SearchResultsConnected {...defaultRoutingProps} />
+          <SearchResultsConnected {...defaultRoutingProps} film={{ genres: ['Action']}} />
         </Provider>
     );
     expect(wrapper.length).toEqual(1);
