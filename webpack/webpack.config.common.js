@@ -6,12 +6,12 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const mode = process.env.ENV_MODE || 'development';
-const isProduction = mode == 'production';
+const isProduction = mode === 'production';
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
 
-  entry: './index.js',
+  entry: './client.js',
 
   output: {
     publicPath: '/',
@@ -22,6 +22,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.scss'],
     alias: {
+      'react-dom': '@hot-loader/react-dom',
       'CommonComponents': path.resolve(__dirname, 'src/components/common'),
       'CommonStyles': path.resolve(__dirname, 'src/common-styles/main.scss'),
       '@common': path.resolve(__dirname, 'src/common'),
@@ -33,6 +34,7 @@ module.exports = {
   },
 
   plugins: [
+    isProduction ? new webpack.HashedModuleIdsPlugin() : new webpack.NamedModulesPlugin(),
     new HtmlWebPackPlugin({
       hash: true,
       template: './index.html',
@@ -102,16 +104,16 @@ module.exports = {
     },
   },
 
-  devServer: {
-    hot: true,
-    https: false,
-    port: 8080,
-    historyApiFallback: true,
-    proxy: {
-      '/api/movies': 'http://localhost:3000',
-      '/assets': 'http://localhost:3000',
-    },
-  },
+  // devServer: {
+  //   hot: true,
+  //   https: false,
+  //   port: 8080,
+  //   historyApiFallback: true,
+  //   proxy: {
+  //     '/api/movies': 'http://localhost:3000',
+  //     '/assets': 'http://localhost:3000',
+  //   },
+  // },
 
   devtool: isProduction ? 'source-map' : 'cheap-module-eval-source-map',
 
