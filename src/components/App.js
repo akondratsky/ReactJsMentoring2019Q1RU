@@ -21,9 +21,11 @@ export class App extends Component {
           <Provider store={store}>
             <PersistGate persistor={persistor}>
               <div className='page-container'>
-                <PageHeader>
-                  <Route exact path='/film/:id?' component={SingleFilmContainer} />
-                </PageHeader>
+                <Route render={(props) => (
+                  <PageHeader {...props}>
+                    <Route exact path='/film/:id?' component={SingleFilmContainer} />
+                  </PageHeader>
+                )} />
                 <div className='page-container__content'>
                   <Switch>
                     <Route exact path={['/search/:searchString', '/search/', '/search', '/', '/film/:id?']}

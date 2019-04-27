@@ -91,7 +91,7 @@ export const filmFetchedSuccessfully = (film) => ({
 export const fetchFilmById = (id) => (dispatch, getStore) => {
   dispatch(filmsHasErrored(false));
   dispatch(filmsIsLoading(true));
-  console.trace();
+
   fetch(ENDPOINT.GET_MOVIE + id)
       .then((response) => {
         if (!response.ok) {
