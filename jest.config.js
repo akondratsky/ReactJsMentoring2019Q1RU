@@ -24,7 +24,7 @@ module.exports = {
   // collectCoverageFrom: null,
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: "coverage",
+  coverageDirectory: 'coverage',
 
   // An array of regexp pattern strings used to skip coverage collection
   // coveragePathIgnorePatterns: [
@@ -35,7 +35,7 @@ module.exports = {
   coverageReporters: [
     // "json",
     // "text",
-    "lcov",
+    'lcov',
     // "clover"
   ],
 
@@ -77,7 +77,7 @@ module.exports = {
 
   // A map from regular expressions to module names that allow to stub out resources with a single module
   moduleNameMapper: {
-      "\\.(scss)$": "babel-jest"
+    '\\.(scss)$': 'babel-jest',
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
@@ -105,10 +105,10 @@ module.exports = {
   // resetModules: false,
 
   // A path to a custom resolver
-  resolver: "jest-webpack-resolver",
+  resolver: 'jest-webpack-resolver',
   jestWebpackResolver: {
     silent: true,
-    webpackConfig: "./webpack.config.js"
+    webpackConfig: './webpack',
   },
 
   // Automatically restore mock state between every test
@@ -126,19 +126,19 @@ module.exports = {
   // runner: "jest-runner",
 
   // The paths to modules that run some code to configure or set up the testing environment before each test
-  setupFiles: ["./jest.setup.js"],
+  setupFiles: ['./jest.setup.js'],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
   // setupFilesAfterEnv: [],
 
   // A list of paths to snapshot serializer modules Jest should use for snapshot testing
-  snapshotSerializers: ["enzyme-to-json/serializer"],
+  snapshotSerializers: ['enzyme-to-json/serializer'],
 
   // The test environment that will be used for testing
-  setupFilesAfterEnv: ["jest-enzyme"],
-  testEnvironment: "enzyme",
+  setupFilesAfterEnv: ['jest-enzyme'],
+  testEnvironment: 'enzyme',
   testEnvironmentOptions: {
-    enzymeAdapter: "react16"
+    enzymeAdapter: 'react16',
   },
 
   // Options that will be passed to the testEnvironment
@@ -155,8 +155,8 @@ module.exports = {
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
   testPathIgnorePatterns: [
-    "\\\\node_modules\\\\",
-    "\\\\cypress\\\\"
+    '\\\\node_modules\\\\',
+    '\\\\cypress\\\\',
   ],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
