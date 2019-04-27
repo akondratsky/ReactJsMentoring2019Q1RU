@@ -39,6 +39,9 @@ export class SearchInput extends Component {
   }
 
   typeChangeHandler = (str) => {
+    if (str === 'genre') {
+      str = 'genres';
+    }
     this.props.setSearchType(str);
   };
 

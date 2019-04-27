@@ -37,13 +37,14 @@ export const filmsFetchData = (params) => (
       } = params;
       paramsString = '?';
 
+      if (searchBy) {
+        paramsString += `searchBy=${searchBy}&`;
+      }
+
       if (search) {
         paramsString += `search=${search}&`;
       };
 
-      if (searchBy) {
-        paramsString += `searchBy=${searchBy}&`;
-      }
 
       if (sortBy) {
         paramsString += `sortBy=${sortBy}&`;
@@ -102,6 +103,10 @@ export const fetchFilmById = (id) => (dispatch, getStore) => {
       .then((response) => response.json())
       .then((film) => {
         dispatch(filmFetchedSuccessfully(film));
+        dispatch(filmsFetchData({
+          searchBy: 'genres',
+          search: film.genres[0],
+        }));
       })
       .catch(() => dispatch(filmsHasErrored(true)));
 };
