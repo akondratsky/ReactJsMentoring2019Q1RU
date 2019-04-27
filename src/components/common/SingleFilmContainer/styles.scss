@@ -1,0 +1,57 @@
+@import '~CommonStyles';
+
+.single-film {
+  display: flex;
+  width: 80%;
+  margin: 10px auto 30px auto;
+  
+  &__left-side {
+
+  }
+
+  &__poster {
+    max-width: 400px;
+    max-height: 600px;
+  }
+
+  &__right-side {
+    padding: 20px;
+    color: $light-text-color;
+  }
+
+  &__title {
+    font-size: 2rem;
+    display: block;
+    color: $active-color;
+  }
+
+  &__rating {
+    display: inline-block;
+    border-radius: 50%;
+    min-width: 36px;
+    min-height: 36px;
+    padding: 8px;
+    margin-left: 10px;
+
+    background: transparent;
+    border: 2px solid $light-text-color;
+    color: $light-text-color;
+    text-align: center;
+  }
+
+  &__tagline {
+  }
+
+  &__info {
+    font-weight: bold;
+    margin-right: 40px;
+
+    &-container {
+      margin-top: 10px;
+    }
+  }
+
+  &__overview {
+    margin-top: 10px;
+  }
+}

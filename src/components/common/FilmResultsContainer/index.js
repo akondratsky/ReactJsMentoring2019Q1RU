@@ -7,10 +7,6 @@ import { filmsFetchData, fetchFilmById } from '@actions/films';
 import './styles.scss';
 
 export class FilmResults extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     if (!this.props.films || this.props.films.length === 0) {
       this.props.fetchData();

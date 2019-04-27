@@ -6,6 +6,7 @@ import { SearchResultsContainer } from '../SearchResultsContainer';
 
 export class PageHeader extends Component {
   render() {
+    const { children } = this.props;
     return (
       <header>
         <div className='page-header'>
@@ -13,9 +14,11 @@ export class PageHeader extends Component {
           <div className='page-header__container'>
             <Logo />
             <SearchPanelContainer />
+            {children}
           </div>
         </div>
         <SearchResultsContainer />
+
       </header>
     );
   }
