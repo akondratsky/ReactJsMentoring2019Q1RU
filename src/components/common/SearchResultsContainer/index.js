@@ -72,4 +72,5 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export const SearchResultsContainer = withRouter( connect(mapStateToProps, mapDispatchToProps)(SearchResults) );
+export const SearchResultsConnected = connect(mapStateToProps, mapDispatchToProps)(SearchResults);
+export const SearchResultsContainer = withRouter(SearchResultsConnected);

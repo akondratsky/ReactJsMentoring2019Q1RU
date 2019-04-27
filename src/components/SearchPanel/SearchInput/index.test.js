@@ -1,14 +1,23 @@
 import React from 'react';
-import { SearchInput, SearchInputContainer } from './index';
+import { SearchInput, SearchInputContainer, SearchInputWithoutRouter } from './index';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
-import { ACTION } from 'Common/constants';
+import { ACTION } from '@common/constants';
 import thunk from 'redux-thunk';
+// import { MemoryRouter, Route } from 'react-router-dom';
+
+const defaultRoutingProps = {
+  match: { params: {}},
+  history: {
+    push: jest.fn(),
+  },
+};
+
 
 describe('<SearchInput />', () => {
   it('should be rendered correctly', () => {
     const input = shallow(
-        <SearchInput />
+        <SearchInput {...defaultRoutingProps} />
     );
     expect(input).toMatchSnapshot();
   });
@@ -17,7 +26,7 @@ describe('<SearchInput />', () => {
   it('calls setSearchType onTypeChange', () => {
     const setSearchTypeMockFn = jest.fn();
     const wrapper = mount(
-        <SearchInput setSearchType={setSearchTypeMockFn} />
+        <SearchInput {...defaultRoutingProps} setSearchType={setSearchTypeMockFn} />
     );
 
     expect( wrapper.find('[value="genre"]').hasClass('button-inactive') ).toBeTruthy();
@@ -31,7 +40,7 @@ describe('<SearchInput />', () => {
   it('calls setSearchValue on input', () => {
     const setSearchValue = jest.fn();
     const wrapper = mount(
-        <SearchInput setSearchValue={setSearchValue} />
+        <SearchInput {...defaultRoutingProps} setSearchValue={setSearchValue} />
     );
     const input = wrapper.find('input[type="text"]');
 
@@ -52,10 +61,18 @@ describe('<SearchInput />', () => {
     const fetchData = jest.fn();
     const searchStrStub = 'searchStrStub';
     const searcyByStrStub = 'searcyByStrStub';
+    const routingPropsStub = {
+      match: {
+        params: { searchString: searchStrStub },
+      },
+      history: {
+        push: jest.fn(),
+      },
+    };
     const wrapper = mount(
         <SearchInput
+          {...routingPropsStub}
           fetchData={fetchData}
-          search={searchStrStub}
           searchBy={searcyByStrStub} />
     );
 
@@ -86,7 +103,7 @@ describe('<SearchInputContainer />', () => {
     store = mockStore(defaultStore);
     wrapper = mount(
         <Provider store={store}>
-          <SearchInputContainer />
+          <SearchInputWithoutRouter {...defaultRoutingProps} />
         </Provider>
     );
   });
@@ -144,9 +161,9 @@ describe('<SearchInputContainer />', () => {
       wrapper.find('input[value="Search"][type="button"]').simulate('click');
 
       const actions = store.getActions();
-      expect(actions.length).toEqual(3);
-      expect(actions[2].type).toEqual(ACTION.FILMS_IS_LOADING);
-      expect(actions[2].isLoading).toBe(true);
+      expect(actions.length).toEqual(4);
+      expect(actions[3].type).toEqual(ACTION.FILMS_IS_LOADING);
+      expect(actions[3].isLoading).toBe(true);
     });
   });
 });

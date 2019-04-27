@@ -3,6 +3,7 @@
 exports[`<FilmResultBody /> should be rendered correctly 1`] = `
 <div
   className="film-result-body"
+  onClick={[Function]}
 >
   <FilmResultImage />
   <div

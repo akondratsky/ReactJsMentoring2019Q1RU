@@ -1,4 +1,4 @@
-import { ACTION } from 'Common/constants';
+import { ACTION } from '@common/constants';
 import { search, searchBy, sortBy } from './filter';
 
 describe('filter reducers', () => {

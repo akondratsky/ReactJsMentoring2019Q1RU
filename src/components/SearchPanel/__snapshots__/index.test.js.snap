@@ -7,6 +7,14 @@ exports[`<SearchPanel /> should be rendered correctly 1`] = `
   >
     FIND YOUR MOVIE
   </h3>
-  <Connect(SearchInput) />
+  <Route
+    component={[Function]}
+    path={
+      Array [
+        "/search/:searchString?",
+        "/",
+      ]
+    }
+  />
 </Fragment>
 `;

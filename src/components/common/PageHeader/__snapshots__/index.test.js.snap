@@ -12,9 +12,9 @@ exports[`<PageHeader /> should be rendered correctly 1`] = `
       className="page-header__container"
     >
       <Logo />
-      <SearchPanel />
+      <withRouter(SearchPanel) />
     </div>
   </div>
-  <Connect(SearchResults) />
+  <withRouter(Connect(SearchResults)) />
 </header>
 `;

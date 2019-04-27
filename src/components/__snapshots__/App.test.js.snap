@@ -2,45 +2,72 @@
 
 exports[`<App /> should be rendered correctly 1`] = `
 <AppErrorBoundary>
-  <Provider
-    store={
-      Object {
-        "dispatch": [Function],
-        "getState": [Function],
-        "replaceReducer": [Function],
-        "subscribe": [Function],
-        Symbol(observable): [Function],
-      }
-    }
-  >
-    <PersistGate
-      loading={null}
-      persistor={
+  <Component>
+    <Provider
+      store={
         Object {
           "dispatch": [Function],
-          "flush": [Function],
           "getState": [Function],
-          "pause": [Function],
-          "persist": [Function],
-          "purge": [Function],
           "replaceReducer": [Function],
           "subscribe": [Function],
           Symbol(observable): [Function],
         }
       }
     >
-      <div
-        className="page-container"
+      <PersistGate
+        loading={null}
+        persistor={
+          Object {
+            "dispatch": [Function],
+            "flush": [Function],
+            "getState": [Function],
+            "pause": [Function],
+            "persist": [Function],
+            "purge": [Function],
+            "replaceReducer": [Function],
+            "subscribe": [Function],
+            Symbol(observable): [Function],
+          }
+        }
       >
-        <PageHeader />
         <div
-          className="page-container__content"
+          className="page-container"
         >
-          <Connect(FilmResults) />
+          <PageHeader />
+          <div
+            className="page-container__content"
+          >
+            <Switch>
+              <Route
+                component={[Function]}
+                exact={true}
+                path={
+                  Array [
+                    "/search/:searchString",
+                    "/search/",
+                    "/search",
+                    "/",
+                  ]
+                }
+              />
+              <Route
+                component={[Function]}
+                exact={true}
+                path="/film/:id?"
+              />
+              <Route
+                component={[Function]}
+                path="/404"
+              />
+              <Route
+                component={[Function]}
+              />
+            </Switch>
+          </div>
+          <PageFooter />
         </div>
-        <PageFooter />
-      </div>
-    </PersistGate>
-  </Provider>
+      </PersistGate>
+    </Provider>
+  </Component>
 </AppErrorBoundary>
 `;

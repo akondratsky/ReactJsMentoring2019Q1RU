@@ -16,7 +16,7 @@ exports[`<FilmReslutsContainer /> <FilmResults /> rendered correctly in normal s
 <div
   className="film-results-container"
 >
-  <FilmResultBody
+  <withRouter(FilmResultBody)
     filmResult={
       Object {
         "budget": 11000000,
@@ -38,6 +38,7 @@ exports[`<FilmReslutsContainer /> <FilmResults /> rendered correctly in normal s
       }
     }
     key="11"
+    onClick={[Function]}
   />
 </div>
 `;

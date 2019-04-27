@@ -1,4 +1,4 @@
-import { ACTION } from 'Common/constants';
+import { ACTION } from '@common/constants';
 import { setSearchType, setSearchString, setSortingBy } from './filter';
 
 describe('filter actions', () => {

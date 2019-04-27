@@ -1,14 +1,21 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { SearchResultsContainer, SearchResults } from './index';
+import { SearchResultsContainer, SearchResults, SearchResultsConnected } from './index';
 import configureStore from 'redux-mock-store';
-import { ACTION, FILM_FIELD_NAMES, STRINGS } from 'Common/constants';
-import { setSortingBy } from 'src/store/actions/filter';
+import { ACTION, FILM_FIELD_NAMES, STRINGS } from '@common/constants';
+import { setSortingBy } from '@store/actions/filter';
+import { MemoryRouter, Route } from 'react-router-dom';
+
+const defaultRoutingProps = {
+  location: {
+    pathname: '/',
+  },
+};
 
 describe('<SearchResultsContainer />', () => {
   it('should render properly', () => {
     const wrapper = shallow(
-        <SearchResultsContainer />
+        <SearchResultsContainer {...defaultRoutingProps} />
     );
     expect(wrapper).toMatchSnapshot();
   });
@@ -16,14 +23,14 @@ describe('<SearchResultsContainer />', () => {
 
   it('should render active element correctly', () => {
     let wrapper = mount(
-        <SearchResults sortBy='rating' />
+        <SearchResults {...defaultRoutingProps} sortBy='rating' />
     );
 
     expect(wrapper.find('[text="rating"]').prop('isActive')).toBeTruthy();
     expect(wrapper.find('[text="release date"]').prop('isActive')).toBeFalsy();
 
     wrapper = mount(
-        <SearchResults sortBy='release date' />
+        <SearchResults {...defaultRoutingProps} sortBy='release date' />
     );
 
     expect(wrapper.find('[text="rating"]').prop('isActive')).toBeFalsy();
@@ -35,7 +42,7 @@ describe('<SearchResultsContainer />', () => {
     const setSortingByMockFn = jest.fn();
 
     const wrapper = mount(
-        <SearchResults setSortingBy={setSortingByMockFn} sortBy='release date' />
+        <SearchResults {...defaultRoutingProps} setSortingBy={setSortingByMockFn} sortBy='release date' />
     );
 
     wrapper.find('[text="release date"]').simulate('click');
@@ -62,7 +69,7 @@ describe('<SearchResultsContainer />', () => {
     const store = mockStore(defaultStore);
     const wrapper = mount(
         <Provider store={store}>
-          <SearchResultsContainer />
+          <SearchResultsConnected {...defaultRoutingProps} />
         </Provider>
     );
     expect(wrapper.length).toEqual(1);
@@ -73,7 +80,7 @@ describe('<SearchResultsContainer />', () => {
       const store = mockStore(defaultStore);
       const wrapper = mount(
           <Provider store={store}>
-            <SearchResultsContainer />
+            <SearchResultsConnected {...defaultRoutingProps} />
           </Provider>
       );
 
@@ -85,7 +92,7 @@ describe('<SearchResultsContainer />', () => {
       const store = mockStore(defaultStore);
       const wrapper = mount(
           <Provider store={store}>
-            <SearchResultsContainer />
+            <SearchResultsConnected {...defaultRoutingProps} />
           </Provider>
       );
 
@@ -102,7 +109,7 @@ describe('<SearchResultsContainer />', () => {
       });
       const wrapper = mount(
           <Provider store={store}>
-            <SearchResultsContainer />
+            <SearchResultsConnected {...defaultRoutingProps}/>
           </Provider>
       );
       expect(wrapper.find(SearchResults).prop('sortBy')).toEqual(STRINGS.RELEASE_DATE);
@@ -114,7 +121,7 @@ describe('<SearchResultsContainer />', () => {
       const store = mockStore(defaultStore);
       mount(
           <Provider store={store}>
-            <SearchResultsContainer />
+            <SearchResultsConnected {...defaultRoutingProps} />
           </Provider>
       );
 
@@ -131,9 +138,13 @@ describe('<SearchResultsContainer />', () => {
     it('calling correct actions from dispatchers in props', () => {
       const store = mockStore(defaultStore);
       const wrapper = mount(
-          <Provider store={store}>
-            <SearchResultsContainer />
-          </Provider>
+          <MemoryRouter initialEntries={['/']} initialIndex={1}>
+            <Route path="/">
+              <Provider store={store}>
+                <SearchResultsContainer />
+              </Provider>
+            </Route>
+          </MemoryRouter>
       );
 
       wrapper.find(`[text="${STRINGS.RATING}"]`).simulate('click');

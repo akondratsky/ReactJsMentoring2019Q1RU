@@ -106,4 +106,6 @@ const mapDispatchToProps = (dispatch) => ({
   fetchData: (params) => dispatch(filmsFetchData(params)),
 });
 
-export const SearchInputContainer = withRouter( connect(mapStateToProps, mapDispatchToProps)(SearchInput) );
+export const SearchInputWithoutRouter = connect(mapStateToProps, mapDispatchToProps)(SearchInput);
+
+export const SearchInputContainer = withRouter(SearchInputWithoutRouter);
