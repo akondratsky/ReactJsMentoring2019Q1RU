@@ -33,7 +33,7 @@ describe('<SearchInput />', () => {
     wrapper.find('[value="genre"]').simulate('click');
 
     expect(setSearchTypeMockFn).toHaveBeenCalled();
-    expect(setSearchTypeMockFn).toHaveBeenCalledWith('genre');
+    expect(setSearchTypeMockFn).toHaveBeenCalledWith('genres');
   });
 
 

@@ -12,7 +12,6 @@ export const filmsHasErrored = (state = false, { type, hasErrored }) => {
 export const filmsIsLoading = (state = false, { type, isLoading }) => {
   switch (type) {
     case ACTION.FILMS_IS_LOADING:
-      console.log(`get FILMS_IS_LOADING: ${state}`);
       return isLoading;
     default:
       return state;

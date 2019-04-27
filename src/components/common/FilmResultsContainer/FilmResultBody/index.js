@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { getYearFromReleaseDateString } from '@common/utils';
 import { FilmResultImage } from './FilmResultImage';
 import { FilmResultReleaseDate } from './FilmResultReleaseDate';
 import { withRouter } from 'react-router-dom';
@@ -20,10 +21,10 @@ export class FilmResultBody extends Component {
         <div className='film-result-body__header'>
           <span className='film-result-body__title'>{film.title}</span>
           <span className='film-result-body__date'>
-            <FilmResultReleaseDate date={film.release_date} />
+            <FilmResultReleaseDate date={ getYearFromReleaseDateString(film.release_date) } />
           </span>
         </div>
-        <span className='film-result-body__genre'>{film.genres}</span>
+        <span className='film-result-body__genre'>{film.genres && film.genres.join(' ')}</span>
       </div>
     );
   }

@@ -41,7 +41,7 @@ describe('films actions', () => {
       sortBy: 'title',
       sortOrder: 'asc',
       search: 'some film',
-      searchBy: 'genre',
+      searchBy: 'genres',
     };
 
     const fetchMock = () => Promise.resolve({
@@ -58,7 +58,7 @@ describe('films actions', () => {
 
     expect(global.fetch).toHaveBeenCalledTimes(1);
     expect(global.fetch).toHaveBeenCalledWith(
-        ENDPOINT.GET_ALL_MOVIES + '?search=some%20film&searchBy=genre&sortBy=title&sortOrder=asc&'
+        ENDPOINT.GET_ALL_MOVIES + '?searchBy=genres&search=some%20film&sortBy=title&sortOrder=asc&'
     );
   });
 

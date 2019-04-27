@@ -47,8 +47,6 @@ export class SingleFilm extends Component {
       return <NotFound />;
     }
 
-    console.log(film);
-
     return (
       <div>
         { film &&
@@ -68,7 +66,7 @@ export class SingleFilm extends Component {
                 <span className="single-film__info">
                   { getYearFromReleaseDateString(film.release_date) }
                 </span>
-                <span className="single-film__info">{film.runtime}</span>
+                <span className="single-film__info">{film.runtime ? `${film.runtime} min` : ''}</span>
               </div>
               <div className="single-film__overview">
                 {film.overview}
