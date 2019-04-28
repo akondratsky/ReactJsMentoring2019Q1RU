@@ -7,6 +7,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const mode = process.env.ENV_MODE || 'development';
 const isProduction = mode === 'production';
+const isUnpaid = !!process.env.UNPAID;
 
 module.exports = {
   context: path.resolve(__dirname, '../src'),
@@ -29,6 +30,7 @@ module.exports = {
       '@store': path.resolve(__dirname, '../src/store'),
       '@actions': path.resolve(__dirname, '../src/store/actions'),
       '@reducers': path.resolve(__dirname, '../src/store/reducers'),
+      '@mocks': path.resolve(__dirname, '../src/__mocks__'),
     },
   },
 
@@ -36,6 +38,7 @@ module.exports = {
     isProduction ? new webpack.HashedModuleIdsPlugin() : new webpack.NamedModulesPlugin(),
     new webpack.DefinePlugin({
       DEBUG: !isProduction,
+      UNPAID: isUnpaid,
     }),
     isProduction && new MiniCssExtractPlugin({
       filename: '[name].css',

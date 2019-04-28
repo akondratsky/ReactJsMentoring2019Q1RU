@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "cross-env ENV_MODE=development node -r \"esm\" ./src/server-side",
+    "poor-dev": "cross-env UNPAID=true ENV_MODE=development node -r \"esm\" ./src/server-side",
     "prod": "cross-env ENV_MODE=production webpack --config ./webpack",
     "old-dev": "npm-run-all --parallel fe-server be-server",
     "old-fe-server": "cross-env ENV_MODE=development webpack-dev-server",

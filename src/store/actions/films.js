@@ -1,4 +1,5 @@
 import { ACTION, ENDPOINT } from '@common/constants';
+import { getResponseStub } from '@mocks/responseStub';
 
 export const filmsHasErrored = (hasErrored) => ({
   type: ACTION.FILMS_HAS_ERRORED,
@@ -17,6 +18,7 @@ export const filmsFetchDataSuccess = ({ data, total, offset, limit }) => ({
   offset,
   limit,
 });
+
 
 export const filmsFetchData = (params) => (
   (dispatch) => {
@@ -67,19 +69,32 @@ export const filmsFetchData = (params) => (
       // }
     }
 
-    // fetch(ENDPOINT.GET_ALL_MOVIES + encodeURI(paramsString))
-    //     .then((response) => {
-    //       if (!response.ok) {
-    //         throw Error(response.statusText);
-    //       }
-    //       dispatch(filmsIsLoading(false));
-    //       return response;
-    //     })
-    //     .then((response) => response.json())
-    //     .then((response) => {
-    //       dispatch(filmsFetchDataSuccess(response));
-    //     })
-    //     .catch(() => dispatch(filmsHasErrored(true)));
+    if (UNPAID) {
+      fetch(ENDPOINT.GET_ALL_MOVIES + encodeURI(paramsString))
+          .then(()=> console.warn('Thanks God! Back-end works again!'), () => {
+            console.warn('Back-end (very excited): "No time to explain, just take this stubs!"');
+            dispatch(filmsIsLoading(false));
+
+            dispatch(filmsFetchDataSuccess(getResponseStub()));
+          });
+    } else {
+      fetch(ENDPOINT.GET_ALL_MOVIES + encodeURI(paramsString))
+          .then((response) => {
+            if (!response.ok) {
+              throw Error(response.statusText);
+            }
+            dispatch(filmsIsLoading(false));
+            return response;
+          })
+          .then((response) => response.json())
+          .then((response) => {
+            dispatch(filmsFetchDataSuccess(response));
+          })
+          .catch(() => {
+            if (UNPAID) console.warn('yeeeeehaaaa');
+            dispatch(filmsHasErrored(true));
+          });
+    }
   }
 );
 
