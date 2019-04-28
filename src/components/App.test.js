@@ -4,7 +4,7 @@ import { App } from './App.js';
 describe('<App />', () => {
   test('should be rendered correctly', () => {
     const app = shallow(
-      <App />
+        <App />
     );
     expect(app).toMatchSnapshot();
   });

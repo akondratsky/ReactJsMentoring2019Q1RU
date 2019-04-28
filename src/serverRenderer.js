@@ -37,11 +37,13 @@ export default function serverRenderer() {
   return (req, res) => {
     const context = {};
 
+    // console.log(req._parsedUrl.search);
+    // console.log(req._parsedUrl.query);
+    // console.log(req._parsedUrl.pathname);
+
     store.dispatch( async function(dispatch) {
       dispatch(filmsFetchData());
     }).then((response) => {
-      console.log('we are here');
-
       const appHtml = renderToString(
           <App
             context={context}
@@ -50,13 +52,13 @@ export default function serverRenderer() {
             store={store} />
       );
 
-      // if (context.url) {
-      //   res.writeHead(302, {
-      //     Location: context.url,
-      //   });
-      //   res.end();
-      //   return;
-      // }
+      if (context.url) {
+        res.writeHead(302, {
+          Location: context.url,
+        });
+        res.end();
+        return;
+      }
 
       const preloadedState = store.getState();
       res.send(renderHTML(appHtml, preloadedState));
@@ -65,3 +67,4 @@ export default function serverRenderer() {
     });
   };
 }
+ 

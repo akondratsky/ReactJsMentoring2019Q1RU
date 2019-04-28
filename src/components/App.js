@@ -14,7 +14,7 @@ import { Route, Switch } from 'react-router-dom';
 import { SingleFilmContainer } from 'CommonComponents/SingleFilmContainer';
 import { NotFound } from './NotFound';
 
-class App extends Component {
+export class App extends Component {
   render() {
     const { Router, location, context, store, persistor } = this.props;
 
