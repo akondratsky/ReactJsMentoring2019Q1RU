@@ -5,6 +5,7 @@ import App from './components/App';
 import { store } from '@store/store';
 
 import { StaticRouter } from 'react-router-dom';
+import { filmsFetchData } from './store/actions/films';
 
 function renderHTML(html, preloadedState) {
   const isDev = process.env.ENV_MODE === 'development';
@@ -36,27 +37,31 @@ export default function serverRenderer() {
   return (req, res) => {
     const context = {};
 
-    const renderApp = () => (
-      <App
-        context={context}
-        location={req.url}
-        Router={StaticRouter}
-        store={store} />
-    );
+    store.dispatch( async function(dispatch) {
+      dispatch(filmsFetchData());
+    }).then((response) => {
+      console.log('we are here');
 
-    const htmlString = renderToString(renderHTML());
+      const appHtml = renderToString(
+          <App
+            context={context}
+            location={req.url}
+            Router={StaticRouter}
+            store={store} />
+      );
 
-    if (context.url) {
-      res.writeHead(302, {
-        Location: context.url,
-      });
-      res.end();
-      return;
-    }
+      // if (context.url) {
+      //   res.writeHead(302, {
+      //     Location: context.url,
+      //   });
+      //   res.end();
+      //   return;
+      // }
 
-    const preloadedState = store.getState();
-    res.send(renderHTML(htmlString, preloadedState));
-
-    renderToString(renderApp());
+      const preloadedState = store.getState();
+      res.send(renderHTML(appHtml, preloadedState));
+    }).catch((err) => {
+      console.log(err);
+    });
   };
 }
