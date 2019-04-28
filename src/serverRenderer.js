@@ -2,10 +2,10 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 
 import App from './components/App';
-import { store } from '@store/store';
+import { configureStore } from '@store/store';
 
 import { StaticRouter } from 'react-router-dom';
-import { filmsFetchData } from './store/actions/films';
+import { filmsFetchData, fetchFilmById } from './store/actions/films';
 
 function renderHTML(html, preloadedState) {
   const isDev = process.env.ENV_MODE === 'development';
@@ -35,14 +35,26 @@ function renderHTML(html, preloadedState) {
 
 export default function serverRenderer() {
   return (req, res) => {
+    const store = configureStore();
     const context = {};
 
     // console.log(req._parsedUrl.search);
     // console.log(req._parsedUrl.query);
     // console.log(req._parsedUrl.pathname);
 
+
     store.dispatch( async function(dispatch) {
-      dispatch(filmsFetchData());
+      if (req.url.startsWith('/film/')) {
+        const filmId = req.url.slice(6);
+        const id = parseInt(filmId, 10);
+        if (!isNaN(id)) {
+          dispatch(fetchFilmById(id));
+        } else {
+          context.url = '/404';
+        }
+      }
+
+      dispatch(filmsFetchData(/* TODO: params for search */));
     }).then((response) => {
       const appHtml = renderToString(
           <App
@@ -67,4 +79,3 @@ export default function serverRenderer() {
     });
   };
 }
- 

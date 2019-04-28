@@ -8,15 +8,14 @@ import { PageHeader } from 'CommonComponents/PageHeader';
 import { PageFooter } from 'CommonComponents/PageFooter';
 import { FilmResultsContainer } from 'CommonComponents/FilmResultsContainer';
 
-
-import { PersistGate } from 'redux-persist/lib/integration/react';
+// import { PersistGate } from 'redux-persist/lib/integration/react';
 import { Route, Switch } from 'react-router-dom';
 import { SingleFilmContainer } from 'CommonComponents/SingleFilmContainer';
 import { NotFound } from './NotFound';
 
 export class App extends Component {
   render() {
-    const { Router, location, context, store, persistor } = this.props;
+    const { Router, location, context, store } = this.props;
 
     return (
       <AppErrorBoundary>
