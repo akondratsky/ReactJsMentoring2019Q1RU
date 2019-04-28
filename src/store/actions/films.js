@@ -1,5 +1,5 @@
 import { ACTION, ENDPOINT } from '@common/constants';
-import { getResponseStub } from '@mocks/responseStub';
+import { generateFilmsResponse, generateFilmStub } from '@mocks/responseStub';
 
 export const filmsHasErrored = (hasErrored) => ({
   type: ACTION.FILMS_HAS_ERRORED,
@@ -70,12 +70,11 @@ export const filmsFetchData = (params) => (
     }
 
     if (UNPAID) {
-      fetch(ENDPOINT.GET_ALL_MOVIES + encodeURI(paramsString))
-          .then(()=> console.warn('Thanks God! Back-end works again!'), () => {
+      new Promise((res) => res())
+          .then(() => {
             console.warn('Back-end (very excited): "No time to explain, just take this stubs!"');
             dispatch(filmsIsLoading(false));
-
-            dispatch(filmsFetchDataSuccess(getResponseStub()));
+            dispatch(filmsFetchDataSuccess(generateFilmsResponse()));
           });
     } else {
       fetch(ENDPOINT.GET_ALL_MOVIES + encodeURI(paramsString))
@@ -104,24 +103,36 @@ export const filmFetchedSuccessfully = (film) => ({
 });
 
 export const fetchFilmById = (id) => (dispatch, getStore) => {
-  // dispatch(filmsHasErrored(false));
-  // dispatch(filmsIsLoading(true));
+  dispatch(filmsHasErrored(false));
+  dispatch(filmsIsLoading(true));
 
-  // fetch(ENDPOINT.GET_MOVIE + id)
-  //     .then((response) => {
-  //       if (!response.ok) {
-  //         throw Error(response.statusText);
-  //       }
-  //       dispatch(filmsIsLoading(false));
-  //       return response;
-  //     })
-  //     .then((response) => response.json())
-  //     .then((film) => {
-  //       dispatch(filmFetchedSuccessfully(film));
-  //       dispatch(filmsFetchData({
-  //         searchBy: 'genres',
-  //         search: film.genres[0],
-  //       }));
-  //     })
-  //     .catch(() => dispatch(filmsHasErrored(true)));
+  if (UNPAID) {
+    new Promise((res) => res())
+        .then(() => {
+          const stubFilm = generateFilmStub();
+          dispatch(filmFetchedSuccessfully(stubFilm));
+          dispatch(filmsFetchData({
+            searchBy: 'genres',
+            search: stubFilm.genres[0],
+          }));
+        });
+  } else {
+    fetch(ENDPOINT.GET_MOVIE + id)
+        .then((response) => {
+          if (!response.ok) {
+            throw Error(response.statusText);
+          }
+          dispatch(filmsIsLoading(false));
+          return response;
+        })
+        .then((response) => response.json())
+        .then((film) => {
+          dispatch(filmFetchedSuccessfully(film));
+          dispatch(filmsFetchData({
+            searchBy: 'genres',
+            search: film.genres[0],
+          }));
+        })
+        .catch(() => dispatch(filmsHasErrored(true)));
+  }
 };

@@ -57,29 +57,33 @@ const getTagline = () => {
   return taglines[random(taglines.length)];
 };
 
-const generateDataStub = () => {
+export const generateFilmStub = () => {
+  return {
+    id: random(100000),
+    title: getTitle(),
+    genres: getGenres(),
+    release_date: '2019-04-28',
+    overview: getOverview(),
+    poster_path: DEFAULT_POSTER_PATH,
+    revenue: 0,
+    runtime: random(120) + 30,
+    tagline: getTagline(),
+    budget: 100000,
+    vote_average: random(10) + random(10)/10,
+    vote_count: random(30),
+  };
+};
+
+const generateFilmsStub = () => {
   const films = [];
   for (let i = 0; i < 10; i++) {
-    films.push({
-      id: random(100000),
-      title: getTitle(),
-      genres: getGenres(),
-      release_date: '2019-04-28',
-      overview: getOverview(),
-      poster_path: DEFAULT_POSTER_PATH,
-      revenue: 0,
-      runtime: random(120) + 30,
-      tagline: getTagline(),
-      budget: 100000,
-      vote_average: random(10) + random(10)/10,
-      vote_count: random(30),
-    });
+    films.push(generateFilmStub());
   }
   return films;
 };
 
-export const getResponseStub = () => ({
-  data: generateDataStub(),
+export const generateFilmsResponse = () => ({
+  data: generateFilmsStub(),
   total: 3000,
   offset: 0,
   limit: 5,
