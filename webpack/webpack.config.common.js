@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 // const HtmlWebPackPlugin = require('html-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
+// const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
@@ -15,7 +15,7 @@ module.exports = {
     // publicPath: '/',
     path: path.resolve('./public'),
     // path: path.resolve(__dirname, 'public'),
-    filename: '[name].js',
+    filename: 'js/[name].js',
   },
 
   resolve: {
@@ -59,18 +59,18 @@ module.exports = {
           loader: 'babel-loader',
         },
       },
-      {
-        test: /\.scss$/,
-        use: [
-          isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
-          'css-loader',
-          'sass-loader',
-        ],
-      },
-      {
-        test: /\.jpg$/,
-        use: 'file-loader',
-      },
+      // {
+      //   test: /\.scss$/,
+      //   use: [
+      //     isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
+      //     'css-loader',
+      //     'sass-loader',
+      //   ],
+      // },
+      // {
+      //   test: /\.jpg$/,
+      //   use: 'file-loader',
+      // },
     ],
   },
 

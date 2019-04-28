@@ -1,7 +1,10 @@
-const app = require('./app');
-
-const port = 3000;
-
-app.listen(port, () => {
-  console.info(`Express listening on port ${port}`);
+require('@babel/register')({
+  presets: [
+    '@babel/preset-env',
+    '@babel/preset-react',
+  ],
 });
+
+require('babel-polyfill');
+
+require('./start');

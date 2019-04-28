@@ -6,16 +6,18 @@ if (process.env.ENV_MODE === 'development') {
   const webpack = require('webpack');
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware');
+  const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
   const webpackConfig = require('../../webpack');
-
   const compiler = webpack(webpackConfig);
 
   app.use(webpackDevMiddleware(compiler));
-  app.use(webpackHotMiddleware(compiler));
+  app.use(webpackHotMiddleware(compiler.compilers.find((c) => c.name === 'client')));
+  app.use(webpackHotServerMiddleware(compiler));
 } else {
-  app.use(express.static('public'));
-}
+  const serverRenderer = require('../../public/js/serverRenderer').default;
 
-app.use(require('../serverRenderer'));
+  app.use(express.static('public'));
+  app.use(serverRenderer());
+}
 
 module.exports = app;

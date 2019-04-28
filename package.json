@@ -4,7 +4,7 @@
   "description": "homework tasks",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env ENV_MODE=development node ./src/server-side",
+    "dev": "cross-env ENV_MODE=development node -r \"esm\" ./src/server-side",
     "prod": "cross-env ENV_MODE=production webpack --config ./webpack",
     "old-dev": "npm-run-all --parallel fe-server be-server",
     "old-fe-server": "cross-env ENV_MODE=development webpack-dev-server",
@@ -13,6 +13,7 @@
     "test": "jest",
     "e2e": "cypress open"
   },
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/akondratsky/ReactJsMentoring2019Q1RU.git"
@@ -38,11 +39,14 @@
     "@babel/plugin-proposal-decorators": "^7.3.0",
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.4.4",
     "@hot-loader/react-dom": "^16.8.6",
     "@types/jest": "^24.0.11",
+    "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.5.0",
     "babel-loader": "^8.0.5",
+    "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.6",
     "clean-webpack-plugin": "^2.0.1",
     "cross-env": "^5.2.0",
@@ -56,8 +60,10 @@
     "eslint-plugin-cypress": "^2.2.1",
     "eslint-plugin-jsx": "0.0.2",
     "eslint-plugin-react": "^7.12.4",
+    "esm": "^3.2.22",
     "file-loader": "^3.0.1",
     "html-webpack-plugin": "^3.2.0",
+    "ignore-loader": "^0.1.2",
     "jest": "^24.5.0",
     "jest-environment-enzyme": "^7.0.2",
     "jest-enzyme": "^7.0.2",
@@ -67,6 +73,7 @@
     "npm-run-all": "^4.1.5",
     "path-to-regexp": "^3.0.0",
     "prop-types": "^15.7.2",
+    "react-hot-loader": "^4.8.4",
     "redux-devtools": "^3.5.0",
     "redux-devtools-extension": "^2.13.8",
     "redux-mock-store": "^1.5.3",
@@ -81,6 +88,8 @@
     "webpack-dev-middleware": "^3.6.2",
     "webpack-dev-server": "^3.2.1",
     "webpack-hot-middleware": "^2.24.4",
-    "webpack-merge": "^4.2.1"
+    "webpack-hot-server-middleware": "^0.6.0",
+    "webpack-merge": "^4.2.1",
+    "webpack-node-externals": "^1.7.2"
   }
 }

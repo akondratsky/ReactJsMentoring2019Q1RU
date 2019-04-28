@@ -67,19 +67,19 @@ export const filmsFetchData = (params) => (
       // }
     }
 
-    fetch(ENDPOINT.GET_ALL_MOVIES + encodeURI(paramsString))
-        .then((response) => {
-          if (!response.ok) {
-            throw Error(response.statusText);
-          }
-          dispatch(filmsIsLoading(false));
-          return response;
-        })
-        .then((response) => response.json())
-        .then((response) => {
-          dispatch(filmsFetchDataSuccess(response));
-        })
-        .catch(() => dispatch(filmsHasErrored(true)));
+    // fetch(ENDPOINT.GET_ALL_MOVIES + encodeURI(paramsString))
+    //     .then((response) => {
+    //       if (!response.ok) {
+    //         throw Error(response.statusText);
+    //       }
+    //       dispatch(filmsIsLoading(false));
+    //       return response;
+    //     })
+    //     .then((response) => response.json())
+    //     .then((response) => {
+    //       dispatch(filmsFetchDataSuccess(response));
+    //     })
+    //     .catch(() => dispatch(filmsHasErrored(true)));
   }
 );
 
@@ -89,24 +89,24 @@ export const filmFetchedSuccessfully = (film) => ({
 });
 
 export const fetchFilmById = (id) => (dispatch, getStore) => {
-  dispatch(filmsHasErrored(false));
-  dispatch(filmsIsLoading(true));
+  // dispatch(filmsHasErrored(false));
+  // dispatch(filmsIsLoading(true));
 
-  fetch(ENDPOINT.GET_MOVIE + id)
-      .then((response) => {
-        if (!response.ok) {
-          throw Error(response.statusText);
-        }
-        dispatch(filmsIsLoading(false));
-        return response;
-      })
-      .then((response) => response.json())
-      .then((film) => {
-        dispatch(filmFetchedSuccessfully(film));
-        dispatch(filmsFetchData({
-          searchBy: 'genres',
-          search: film.genres[0],
-        }));
-      })
-      .catch(() => dispatch(filmsHasErrored(true)));
+  // fetch(ENDPOINT.GET_MOVIE + id)
+  //     .then((response) => {
+  //       if (!response.ok) {
+  //         throw Error(response.statusText);
+  //       }
+  //       dispatch(filmsIsLoading(false));
+  //       return response;
+  //     })
+  //     .then((response) => response.json())
+  //     .then((film) => {
+  //       dispatch(filmFetchedSuccessfully(film));
+  //       dispatch(filmsFetchData({
+  //         searchBy: 'genres',
+  //         search: film.genres[0],
+  //       }));
+  //     })
+  //     .catch(() => dispatch(filmsHasErrored(true)));
 };
