@@ -45,8 +45,14 @@ export default function serverRenderer() {
     if (req.url.startsWith('/film/')) {
       const filmId = req.url.slice(6);
       const id = parseInt(filmId, 10);
-      if (!isNaN(id)) {
-        dispatch(fetchFilmById(id));
+
+      if (!isNaN(id) && !req.url.endsWith('.jpg')) {
+        await store.dispatch(await fetchFilmById(id));
+        const film = store.getState().film;
+        await store.dispatch(await filmsFetchData({
+          searchBy: 'genres',
+          search: film.genres[0],
+        }));
       } else {
         context.url = '/404';
       }

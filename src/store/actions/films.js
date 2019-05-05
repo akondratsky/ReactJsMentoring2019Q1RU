@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-unfetch';
 
 import { ACTION, ENDPOINT } from '@common/constants';
+import { isServer } from '@common/utils';
 import { generateFilmsResponse, generateFilmStub } from '@mocks/responseStub';
 
 
@@ -105,37 +106,43 @@ export const filmFetchedSuccessfully = (film) => ({
   film,
 });
 
-export const fetchFilmById = (id) => (dispatch, getStore) => {
-  dispatch(filmsHasErrored(false));
-  dispatch(filmsIsLoading(true));
+export const fetchFilmById = (id) => (
+  (dispatch) => {
+    dispatch(filmsHasErrored(false));
+    dispatch(filmsIsLoading(true));
 
-  if (UNPAID) {
-    new Promise((res) => res())
-        .then(() => {
-          const stubFilm = generateFilmStub();
-          dispatch(filmFetchedSuccessfully(stubFilm));
-          dispatch(filmsFetchData({
-            searchBy: 'genres',
-            search: stubFilm.genres[0],
-          }));
-        });
-  } else {
-    fetch(ENDPOINT.GET_MOVIE + id)
-        .then((response) => {
-          if (!response.ok) {
-            throw Error(response.statusText);
-          }
-          dispatch(filmsIsLoading(false));
-          return response;
-        })
-        .then((response) => response.json())
-        .then((film) => {
-          dispatch(filmFetchedSuccessfully(film));
-          dispatch(filmsFetchData({
-            searchBy: 'genres',
-            search: film.genres[0],
-          }));
-        })
-        .catch(() => dispatch(filmsHasErrored(true)));
+    if (UNPAID) {
+      return new Promise((res) => res())
+          .then(() => {
+            const stubFilm = generateFilmStub();
+            dispatch(filmFetchedSuccessfully(stubFilm));
+            dispatch(filmsFetchData({
+              searchBy: 'genres',
+              search: stubFilm.genres[0],
+            }));
+          });
+    } else {
+      return fetch(ENDPOINT.GET_MOVIE + id)
+          .then((response) => {
+            if (!response.ok) {
+              throw Error(response.statusText);
+            }
+            dispatch(filmsIsLoading(false));
+            return response;
+          })
+          .then((response) => response.json())
+          .then((film) => {
+            dispatch(filmFetchedSuccessfully(film));
+            if (!isServer) {
+              dispatch(filmsFetchData({
+                searchBy: 'genres',
+                search: film.genres[0],
+              }));
+            }
+          })
+          .catch(() => {
+            dispatch(filmsHasErrored(true));
+          });
+    }
   }
-};
+);
