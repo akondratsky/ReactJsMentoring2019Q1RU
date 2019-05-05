@@ -19,23 +19,10 @@ export class SearchInput extends Component {
     };
   }
 
-  componentDidMount() {
-    const { searchString } = this.props.match.params;
-    const decodedSearch = decodeURI(searchString);
-    if (searchString) {
-      this.setState({
-        search: searchString,
-      });
-
-      const { searchBy, sortBy } = this.props;
-
-      this.props.fetchData({
-        search: decodedSearch,
-        searchBy,
-        sortBy,
-        sortOrder: 'asc',
-      });
-    }
+  componentWillMount() {
+    this.setState({
+      search: this.props.search,
+    });
   }
 
   typeChangeHandler = (str) => {

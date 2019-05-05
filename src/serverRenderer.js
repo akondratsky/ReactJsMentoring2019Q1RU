@@ -6,6 +6,7 @@ import { configureStore } from '@store/store';
 
 import { StaticRouter } from 'react-router-dom';
 import { filmsFetchData, fetchFilmById } from './store/actions/films';
+import { setSearchString } from './store/actions/filter';
 
 function renderHTML(html, preloadedState) {
   const isDev = process.env.ENV_MODE === 'development';
@@ -38,10 +39,6 @@ export default function serverRenderer() {
     const store = configureStore();
     const context = {};
 
-    // console.log(req._parsedUrl.search);
-    // console.log(req._parsedUrl.query);
-    // console.log(req._parsedUrl.pathname);
-
     if (req.url.startsWith('/film/')) {
       const filmId = req.url.slice(6);
       const id = parseInt(filmId, 10);
@@ -57,7 +54,18 @@ export default function serverRenderer() {
         context.url = '/404';
       }
     } else {
-      await store.dispatch(await filmsFetchData(/* TODO: params for search */));
+      let search;
+      let searchBy;
+      if (req.url.startsWith('/search/')) {
+        const searchString = req.url.slice(8);
+        search = decodeURI(searchString);
+        store.dispatch( setSearchString(search) );
+        searchBy = 'title';
+      }
+      await store.dispatch(await filmsFetchData({
+        search,
+        searchBy,
+      }));
     }
 
     const appHtml = renderToString(
