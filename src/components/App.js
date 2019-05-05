@@ -8,7 +8,6 @@ import { PageHeader } from 'CommonComponents/PageHeader';
 import { PageFooter } from 'CommonComponents/PageFooter';
 import { FilmResultsContainer } from 'CommonComponents/FilmResultsContainer';
 
-// import { PersistGate } from 'redux-persist/lib/integration/react';
 import { Route, Switch } from 'react-router-dom';
 import { SingleFilmContainer } from 'CommonComponents/SingleFilmContainer';
 import { NotFound } from './NotFound';
@@ -21,7 +20,6 @@ export class App extends Component {
       <AppErrorBoundary>
         <Provider store={store}>
           <Router location={location} context={context}>
-            {/* <PersistGate persistor={persistor}> */}
             <div className='page-container'>
               <Route render={(props) => (
                 <PageHeader {...props}>
@@ -38,7 +36,6 @@ export class App extends Component {
               </div>
               <PageFooter />
             </div>
-            {/* </PersistGate> */}
           </Router>
         </Provider>
       </AppErrorBoundary>

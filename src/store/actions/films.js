@@ -1,5 +1,8 @@
+import fetch from 'isomorphic-unfetch';
+
 import { ACTION, ENDPOINT } from '@common/constants';
 import { generateFilmsResponse, generateFilmStub } from '@mocks/responseStub';
+
 
 export const filmsHasErrored = (hasErrored) => ({
   type: ACTION.FILMS_HAS_ERRORED,
@@ -70,14 +73,14 @@ export const filmsFetchData = (params) => (
     }
 
     if (UNPAID) {
-      new Promise((res) => res())
+      return new Promise((res) => res())
           .then(() => {
             console.warn('Back-end (very excited): "No time to explain, just take this stubs!"');
             dispatch(filmsIsLoading(false));
             dispatch(filmsFetchDataSuccess(generateFilmsResponse()));
           });
     } else {
-      fetch(ENDPOINT.GET_ALL_MOVIES + encodeURI(paramsString))
+      return fetch(ENDPOINT.GET_ALL_MOVIES + encodeURI(paramsString))
           .then((response) => {
             if (!response.ok) {
               throw Error(response.statusText);

@@ -34,7 +34,7 @@ function renderHTML(html, preloadedState) {
 }
 
 export default function serverRenderer() {
-  return (req, res) => {
+  return async (req, res) => {
     const store = configureStore();
     const context = {};
 
@@ -42,40 +42,35 @@ export default function serverRenderer() {
     // console.log(req._parsedUrl.query);
     // console.log(req._parsedUrl.pathname);
 
-
-    store.dispatch( async function(dispatch) {
-      if (req.url.startsWith('/film/')) {
-        const filmId = req.url.slice(6);
-        const id = parseInt(filmId, 10);
-        if (!isNaN(id)) {
-          dispatch(fetchFilmById(id));
-        } else {
-          context.url = '/404';
-        }
+    if (req.url.startsWith('/film/')) {
+      const filmId = req.url.slice(6);
+      const id = parseInt(filmId, 10);
+      if (!isNaN(id)) {
+        dispatch(fetchFilmById(id));
+      } else {
+        context.url = '/404';
       }
+    } else {
+      await store.dispatch(await filmsFetchData(/* TODO: params for search */));
+    }
 
-      dispatch(filmsFetchData(/* TODO: params for search */));
-    }).then((response) => {
-      const appHtml = renderToString(
-          <App
-            context={context}
-            location={req.url}
-            Router={StaticRouter}
-            store={store} />
-      );
+    const appHtml = renderToString(
+        <App
+          context={context}
+          location={req.url}
+          Router={StaticRouter}
+          store={store} />
+    );
 
-      if (context.url) {
-        res.writeHead(302, {
-          Location: context.url,
-        });
-        res.end();
-        return;
-      }
+    if (context.url) {
+      res.writeHead(302, {
+        Location: context.url,
+      });
+      res.end();
+      return;
+    }
 
-      const preloadedState = store.getState();
-      res.send(renderHTML(appHtml, preloadedState));
-    }).catch((err) => {
-      console.log(err);
-    });
+    const preloadedState = store.getState();
+    res.send(renderHTML(appHtml, preloadedState));
   };
 }
