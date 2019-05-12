@@ -9,7 +9,6 @@ exports[`<SearchInput /> should be rendered correctly 1`] = `
   >
     <DummyInput
       onInput={[Function]}
-      value=""
     />
   </div>
   <div

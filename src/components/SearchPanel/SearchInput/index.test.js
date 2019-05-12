@@ -79,7 +79,6 @@ describe('<SearchInput />', () => {
     wrapper.find('input[value="Search"]').simulate('click');
     expect(fetchData).toHaveBeenCalled();
     expect(fetchData).toHaveBeenCalledWith({
-      search: searchStrStub,
       searchBy: searcyByStrStub,
       sortBy: undefined,
       sortOrder: 'asc',
