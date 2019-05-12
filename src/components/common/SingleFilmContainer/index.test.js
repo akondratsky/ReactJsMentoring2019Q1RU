@@ -1,13 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { render, waitForElement } from 'react-testing-library';
+
 import {
   act,
   isElement,
   isElementOfType,
   scryRenderedDOMComponentsWithClass,
 } from 'react-dom/test-utils';
-import { SingleFilm } from './index';
-import { render, waitForElement } from 'react-testing-library';
+
+import { configureStore } from '@store/store';
+
+import { SingleFilmWithoutRouter, SingleFilm } from './index';
 
 
 describe('SingleFilmContainer', () => {
@@ -77,13 +82,24 @@ describe('react-testing-library learning', () => {
   let film;
   let fetchFilm;
 
+  const renderAsContainer = ({ film }) => {
+    const store = configureStore({ film });
+
+    return render(
+        <Provider store={store}>
+          <SingleFilmWithoutRouter match={match} />
+        </Provider>
+    );
+  };
+
   beforeEach(() => {
     match = { params: { id: '31313' }};
     film = { id: 13, title: 'filmtitle' };
     fetchFilm = jest.fn();
   });
 
-  it('getByText', async () => {
+
+  it('getByText: correct title exists', async () => {
     const { getByText } = render(
         <SingleFilm
           film={film}
@@ -93,5 +109,10 @@ describe('react-testing-library learning', () => {
 
     // will throw exception it there is no element with 'filmtitle' text inside it
     await waitForElement(() => getByText(/filmtitle/i));
+  });
+
+  it('works correctly with redux container', async () => {
+    const { getByText } = renderAsContainer({ film });
+    await waitForElement(() => getByText('filmtitle'));
   });
 });

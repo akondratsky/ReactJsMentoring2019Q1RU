@@ -79,4 +79,7 @@ export class SingleFilm extends Component {
   }
 }
 
+// for testing purposes;
+export const SingleFilmWithoutRouter = connect(mapStateToProps, mapDispatchToProps)(SingleFilm);
+
 export const SingleFilmContainer = withRouter( connect(mapStateToProps, mapDispatchToProps)(SingleFilm) );
