@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { render, waitForElement } from 'react-testing-library';
+import { MemoryRouter, Route } from 'react-router';
 
 import {
   act,
@@ -12,7 +13,7 @@ import {
 
 import { configureStore } from '@store/store';
 
-import { SingleFilmWithoutRouter, SingleFilm } from './index';
+import { SingleFilmContainer, SingleFilmWithoutRouter, SingleFilm } from './index';
 
 
 describe('SingleFilmContainer', () => {
@@ -92,6 +93,20 @@ describe('react-testing-library learning', () => {
     );
   };
 
+  const renderWithRouter = ({ film }) => {
+    const store = configureStore({ film });
+
+    return render(
+        <Provider store={store}>
+          <MemoryRouter initialEntries={[`/film/${film.id}`]} initialIndex={1}>
+            <Route path={`/film/:id`}>
+              <SingleFilmContainer />
+            </Route>
+          </MemoryRouter>
+        </Provider>
+    );
+  };
+
   beforeEach(() => {
     match = { params: { id: '31313' }};
     film = { id: 13, title: 'filmtitle' };
@@ -115,4 +130,10 @@ describe('react-testing-library learning', () => {
     const { getByText } = renderAsContainer({ film });
     await waitForElement(() => getByText('filmtitle'));
   });
+
+  it('works correctly with router', async () => {
+    const { getByText } = renderWithRouter({ film });
+    await waitForElement(() => getByText('filmtitle'));
+  });
 });
+
