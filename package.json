@@ -29,6 +29,7 @@
     "@babel/polyfill": "^7.4.4",
     "express": "^4.16.4",
     "jest-dom": "^3.2.2",
+    "jsdom": "^15.0.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-redux": "^6.0.1",

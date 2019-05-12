@@ -4,6 +4,9 @@ import { Provider } from 'react-redux';
 import { render, waitForElement } from 'react-testing-library';
 import { MemoryRouter, Route } from 'react-router';
 
+import { JSDOM } from 'jsdom';
+import { renderToString } from 'react-dom/server';
+
 import {
   act,
   isElement,
@@ -137,3 +140,29 @@ describe('react-testing-library learning', () => {
   });
 });
 
+describe('jsdom', () => {
+  let match;
+  let film;
+  let fetchFilm;
+
+  beforeEach(() => {
+    match = { params: { id: '31313' }};
+    film = { id: 13, title: 'filmtitle' };
+    fetchFilm = jest.fn();
+  });
+
+  it('should render correctly', () => {
+    const html = renderToString(
+        <SingleFilm
+          film={film}
+          match={match}
+          fetchFilm={fetchFilm} />
+    );
+
+    // so we getting virtual dom and can work with it like in a browser
+    const dom = new JSDOM(html);
+    const renderedTitleText = dom.window.document.querySelector('.single-film__title span').textContent;
+
+    expect(renderedTitleText).toBe('filmtitle');
+  });
+});
