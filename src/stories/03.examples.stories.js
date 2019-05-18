@@ -60,3 +60,14 @@ stories.add(
       );
     }
 );
+
+stories.add(
+    Content.Examples.Viewport,
+    () => (
+      <DummyButton text='I am beautiful button' isActive />
+    ),
+    {
+      info: { disabled: true, source: true, inline: false },
+      viewport: { defaultViewport: 'iphone6' },
+    }
+);

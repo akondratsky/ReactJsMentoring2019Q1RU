@@ -31,6 +31,7 @@
     "@storybook/addon-knobs": "^5.0.11",
     "@storybook/addon-links": "^5.0.11",
     "@storybook/addon-options": "^5.0.11",
+    "@storybook/addon-viewport": "^5.0.11",
     "express": "^4.16.4",
     "flow-bin": "^0.98.1",
     "jest-dom": "^3.2.2",
