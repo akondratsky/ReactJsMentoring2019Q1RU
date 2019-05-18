@@ -30,6 +30,7 @@ module.exports = {
       'Store': path.resolve(__dirname, '../src/store'),
       'Actions': path.resolve(__dirname, '../src/store/actions'),
       'Reducers': path.resolve(__dirname, '../src/store/reducers'),
+      'Selectors': path.resolve(__dirname, '../src/store/selectors'),
       'Mocks': path.resolve(__dirname, '../src/__mocks__'),
     },
   },

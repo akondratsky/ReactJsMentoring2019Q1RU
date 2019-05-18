@@ -37,3 +37,12 @@ export const sortBy = (
       return state;
   }
 };
+
+export const sortOrder = (state: string = 'asc', { type, sortOrder }: { type: String, sortOrder: string}) => {
+  switch (type) {
+    case ACTION.SET_SORT_ORDERING:
+      return sortOrder;
+    default:
+      return state;
+  }
+};

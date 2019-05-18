@@ -1,30 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { DummyInput } from 'CommonComponents/DummyInput';
-import { DummyButton } from 'CommonComponents/DummyButton';
 import { Switcher } from 'CommonComponents/Switcher';
 
 import { setSearchType, setSearchString } from 'Actions/filter';
-import { filmsFetchData } from 'Actions/films';
+import { getFilms } from 'Selectors/films';
 
 import './styles.scss';
 
 export class SearchInput extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      search: '',
-    };
-  }
-
-  componentWillMount() {
-    this.setState({
-      search: this.props.search,
-    });
-  }
-
   typeChangeHandler = (str) => {
     if (str === 'genre') {
       str = 'genres';
@@ -34,26 +21,10 @@ export class SearchInput extends Component {
 
   inputHandler = (e) => {
     this.props.setSearchValue(e.target.value);
-    this.setState({
-      search: e.target.value,
-    });
-  }
-
-  onSubmit = () => {
-    const { search, searchBy, sortBy, history, fetchData } = this.props;
-
-    fetchData({
-      search: this.state.search,
-      searchBy,
-      sortBy,
-      sortOrder: 'asc',
-    });
-
-    history.push(`/search/${encodeURI(search)}`);
   }
 
   render() {
-    const { search } = this.state;
+    const { fetchData, search } = this.props;
 
     return (
       <div className='search-input'>
@@ -71,10 +42,12 @@ export class SearchInput extends Component {
               onChange={this.typeChangeHandler} />
           </div>
           <div className='search-input__submit'>
-            <DummyButton text='Search'
-              isActive={true}
-              width='100px'
-              onClick={this.onSubmit} />
+            <Link
+              className='button button-active'
+              style={{ width: '100px', textDecoration: 'none' }}
+              to={`/search/${encodeURI(search)}`} onClick={fetchData}>
+              SEARCH
+            </Link>
           </div>
         </div>
       </div>
@@ -87,15 +60,33 @@ const mapStateToProps = (state) => {
     search: state.search,
     searchBy: state.searchBy,
     sortBy: state.sortBy,
+    fetchData: () => getFilms(state),
   };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  setSearchType: (typeName) => dispatch(setSearchType(typeName)),
-  setSearchValue: (value) => dispatch(setSearchString(value)),
-  fetchData: (params) => dispatch(filmsFetchData(params)),
-});
+const mapDispatchToProps = (dispatch, bb, cc, dd) => {
+  return {
+    setSearchType: (typeName) => dispatch(setSearchType(typeName)),
+    setSearchValue: (value) => dispatch(setSearchString(value)),
+  };
+};
 
 export const SearchInputWithoutRouter = connect(mapStateToProps, mapDispatchToProps)(SearchInput);
+
+
+// const mergeProps = (stateProps, dispatchProps) => {
+//   const { dispatch } = dispatchProps;
+//   debugger;
+//   return ({
+//     ...stateProps,
+//     ...dispatchProps,
+//     setSearchType: (typeName) => dispatch(setSearchType(typeName)),
+//     setSearchValue: (value) => dispatch(setSearchString(value)),
+//     fetchData: () => getFilms(),
+//   });
+// };
+
+
+// export const SearchInputWithoutRouter = connect(mapStateToProps, null, mergeProps)(SearchInput);
 
 export const SearchInputContainer = withRouter(SearchInputWithoutRouter);

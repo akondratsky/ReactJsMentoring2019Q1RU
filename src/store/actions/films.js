@@ -6,15 +6,16 @@ import fetch from 'isomorphic-unfetch';
 
 import { ACTION, ENDPOINT } from 'Common/constants';
 import { isServer } from 'Common/utils';
+import { getSearchBy, getSearchString, getSortBy, getSortOrder } from 'Selectors/films';
 import { generateFilmsResponse, generateFilmStub } from 'Mocks/responseStub';
 
 
-export const filmsHasErrored = (hasErrored: boolean) => ({
+export const setFilmsHasErrored = (hasErrored: boolean) => ({
   type: ACTION.FILMS_HAS_ERRORED,
   hasErrored,
 });
 
-export const filmsIsLoading = (isLoading: boolean) => ({
+export const setFilmsIsLoading = (isLoading: boolean) => ({
   type: ACTION.FILMS_IS_LOADING,
   isLoading,
 });
@@ -29,46 +30,50 @@ export const filmsFetchDataSuccess = (
   limit,
 });
 
+export const setSortOrder = (
+    { sortOrder }: { sortOrder: string }
+) => ({
+  type: ACTION.SET_SORT_ORDERING,
+  sortOrder,
+});
 
-export const filmsFetchData = (params: any) => (
-  (dispatch: Function) => {
-    dispatch(filmsHasErrored(false));
-    dispatch(filmsIsLoading(true));
+export const filmsFetchData = () => (
+  (dispatch: Function, getState: Function) => {
+    console.log('fetching films...');
+    dispatch(setFilmsHasErrored(false));
+    dispatch(setFilmsIsLoading(true));
 
-    let paramsString = '';
+    const state = getState();
 
-    if (params) {
-      const {
-        sortBy,
-        sortOrder,
-        search,
-        searchBy,
-      } = params;
-      paramsString = '?';
+    const sortBy = getSortBy(state);
+    const sortOrder = getSortOrder(state);
+    const search = getSearchString(state);
+    const searchBy = getSearchBy(state);
 
-      if (searchBy) {
-        paramsString += `searchBy=${searchBy}&`;
-      }
+    let paramsString = '?';
 
-      if (search) {
-        paramsString += `search=${search}&`;
-      };
+    if (searchBy && searchBy.length) {
+      paramsString += `searchBy=${searchBy}&`;
+    }
+
+    if (search && search.length) {
+      paramsString += `search=${search}&`;
+    };
 
 
-      if (sortBy) {
-        paramsString += `sortBy=${sortBy}&`;
-      }
+    if (sortBy && sortBy.length) {
+      paramsString += `sortBy=${sortBy}&`;
+    }
 
-      if (sortOrder) {
-        paramsString += `sortOrder=${sortOrder}&`;
-      }
+    if (sortOrder && sortOrder.length) {
+      paramsString += `sortOrder=${sortOrder}&`;
     }
 
     if (UNPAID) {
       return new Promise((res) => res())
           .then(() => {
             console.warn('Back-end (very excited): "No time to explain, just take this stubs!"');
-            dispatch(filmsIsLoading(false));
+            dispatch(setFilmsIsLoading(false));
             dispatch(filmsFetchDataSuccess(generateFilmsResponse()));
           });
     } else {
@@ -77,7 +82,7 @@ export const filmsFetchData = (params: any) => (
             if (!response.ok) {
               throw Error(response.statusText);
             }
-            dispatch(filmsIsLoading(false));
+            dispatch(setFilmsIsLoading(false));
             return response;
           })
           .then((response) => response.json())
@@ -86,7 +91,7 @@ export const filmsFetchData = (params: any) => (
           })
           .catch(() => {
             if (UNPAID) console.warn('yeeeeehaaaa');
-            dispatch(filmsHasErrored(true));
+            dispatch(setFilmsHasErrored(true));
           });
     }
   }
@@ -99,8 +104,8 @@ export const filmFetchedSuccessfully = (film: any) => ({
 
 export const fetchFilmById = (id: number) => (
   (dispatch: Function) => {
-    dispatch(filmsHasErrored(false));
-    dispatch(filmsIsLoading(true));
+    dispatch(setFilmsHasErrored(false));
+    dispatch(setFilmsIsLoading(true));
 
     if (UNPAID) {
       return new Promise((res) => res())
@@ -118,7 +123,7 @@ export const fetchFilmById = (id: number) => (
             if (!response.ok) {
               throw Error(response.statusText);
             }
-            dispatch(filmsIsLoading(false));
+            dispatch(setFilmsIsLoading(false));
             return response;
           })
           .then((response) => response.json())
@@ -132,7 +137,7 @@ export const fetchFilmById = (id: number) => (
             }
           })
           .catch(() => {
-            dispatch(filmsHasErrored(true));
+            dispatch(setFilmsHasErrored(true));
           });
     }
   }
