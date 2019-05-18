@@ -66,7 +66,7 @@ export default function serverRenderer() {
         store.dispatch( setSearchString(search) );
         searchBy = 'title';
       }
-      await store.dispatch(await filmsFetchData({
+      await store.dispatch(filmsFetchData({
         search,
         searchBy,
       }));
