@@ -23,7 +23,7 @@ export class App extends Component {
             <div className='page-container'>
               <Route render={(props) => (
                 <PageHeader {...props}>
-                  <Route exact path='/film/:id?' component={SingleFilmContainer} />
+                  <Route exact path='/film/:id' component={SingleFilmContainer} />
                 </PageHeader>
               )} />
               <div className='page-container__content'>

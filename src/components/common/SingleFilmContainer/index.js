@@ -23,10 +23,6 @@ const mapDispatchToProps = (dispatch) => ({
 export class SingleFilm extends Component {
   componentDidMount() {
     const { match, film, isLoading } = this.props;
-    if (!match.params.id) {
-      return <Redirect to='/404' />;
-    }
-
     if (match.params.id !== film.id && !isLoading) {
       this.props.fetchFilm(+match.params.id);
     }
