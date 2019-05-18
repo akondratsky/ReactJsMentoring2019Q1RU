@@ -1,9 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<FilmResultBody /> should be rendered correctly 1`] = `
-<div
+<Link
   className="film-result-body"
   onClick={[Function]}
+  to="/film/undefined"
 >
   <FilmResultImage />
   <div
@@ -14,14 +15,10 @@ exports[`<FilmResultBody /> should be rendered correctly 1`] = `
     />
     <span
       className="film-result-body__date"
-    >
-      <FilmResultReleaseDate
-        date=""
-      />
-    </span>
+    />
   </div>
   <span
     className="film-result-body__genre"
   />
-</div>
+</Link>
 `;

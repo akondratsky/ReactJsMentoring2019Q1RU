@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { FilmResultBodyContainer } from './FilmResultBody';
-import { filmsFetchData, fetchFilmById } from 'Actions/films';
+import { filmsFetchData } from 'Actions/films';
 
 import './styles.scss';
 
@@ -11,10 +11,6 @@ export class FilmResults extends Component {
     if (!this.props.films || this.props.films.length === 0) {
       this.props.fetchData();
     }
-  }
-
-  handleFilmClick = (id) => {
-    this.props.fetchFilm(id);
   }
 
   render() {
@@ -29,7 +25,7 @@ export class FilmResults extends Component {
     return (
       <div className='film-results-container'>
         {this.props.films.records.map((film) => (
-          <FilmResultBodyContainer key={film.id} filmResult={film} onClick={this.handleFilmClick} />
+          <FilmResultBodyContainer key={film.id} filmResult={film} />
         ))}
       </div>
     );
@@ -44,7 +40,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchData: () => dispatch(filmsFetchData()),
-  fetchFilm: (id) => dispatch(fetchFilmById(id)),
 });
 
 export const FilmResultsContainer = connect(mapStateToProps, mapDispatchToProps)(FilmResults);
