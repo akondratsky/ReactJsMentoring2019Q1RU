@@ -15,7 +15,7 @@ export class SearchResults extends Component {
 
   render() {
     const { pathname } = this.props.location;
-    const { genre } = this.props;
+    const { genre, sortBy } = this.props;
 
     let content = null;
     if (pathname === '/' || pathname.startsWith('/search')) {
@@ -27,9 +27,9 @@ export class SearchResults extends Component {
           <div className='search-results__sorting-header'>Sort by</div>
           <Switcher
             variants={['release date', 'rating']}
-            default={this.props.sortBy}
+            default={sortBy}
             isLight={true}
-            onChange={this.setSortingByHandler.bind(this)}/>
+            onChange={this.setSortingByHandler}/>
         </div>
       </Fragment>;
     } else if (pathname.startsWith('/film/')) {
