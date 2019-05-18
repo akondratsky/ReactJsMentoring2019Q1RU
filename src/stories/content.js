@@ -15,6 +15,7 @@ const Content = {
   Examples: {
     _Chapter: 'Examples of stories',
     Markdown: 'Example of story with markdown',
+    BtnWithKnobs: 'Example of button with knobs',
   },
 };
 

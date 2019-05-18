@@ -1,4 +1,4 @@
-import { configure, addDecorator  } from '@storybook/react';
+import { configure, addDecorator, addParameters  } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 
 addDecorator(withInfo({
@@ -6,6 +6,13 @@ addDecorator(withInfo({
   inline: true,
   propTables: null, // do not show propTypes
 }));
+
+addParameters({
+  options: {
+    name: 'React JS Mentoring Project Homework',
+    url: 'http://localhost:3000/',
+  }
+});
 
 const req = require.context('../src/stories', true, /.stories.js$/);
 
