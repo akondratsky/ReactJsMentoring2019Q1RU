@@ -2,7 +2,7 @@ import React from 'react';
 import { SearchInput, SearchInputContainer, SearchInputWithoutRouter } from './index';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
-import { ACTION } from '@common/constants';
+import { ACTION } from 'Common/constants';
 import thunk from 'redux-thunk';
 // import { MemoryRouter, Route } from 'react-router-dom';
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getYearFromReleaseDateString } from '@common/utils';
+import { getYearFromReleaseDateString } from 'Common/utils';
 import { FilmResultImage } from './FilmResultImage';
 import { FilmResultReleaseDate } from './FilmResultReleaseDate';
 import { withRouter } from 'react-router-dom';

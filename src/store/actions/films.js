@@ -1,8 +1,8 @@
 import fetch from 'isomorphic-unfetch';
 
-import { ACTION, ENDPOINT } from '@common/constants';
-import { isServer } from '@common/utils';
-import { generateFilmsResponse, generateFilmStub } from '@mocks/responseStub';
+import { ACTION, ENDPOINT } from 'Common/constants';
+import { isServer } from 'Common/utils';
+import { generateFilmsResponse, generateFilmStub } from 'Mocks/responseStub';
 
 
 export const filmsHasErrored = (hasErrored) => ({

@@ -1,4 +1,4 @@
-import { ACTION, ENDPOINT } from '@common/Constants';
+import { ACTION, ENDPOINT } from 'Common/Constants';
 import { filmsHasErrored, filmsIsLoading, filmsFetchDataSuccess, filmsFetchData } from './films';
 
 describe('films actions', () => {

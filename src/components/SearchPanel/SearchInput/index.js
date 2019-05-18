@@ -6,8 +6,8 @@ import { DummyInput } from 'CommonComponents/DummyInput';
 import { DummyButton } from 'CommonComponents/DummyButton';
 import { Switcher } from 'CommonComponents/Switcher';
 
-import { setSearchType, setSearchString } from '@actions/filter';
-import { filmsFetchData } from '@actions/films';
+import { setSearchType, setSearchString } from 'Actions/filter';
+import { filmsFetchData } from 'Actions/films';
 
 import './styles.scss';
 

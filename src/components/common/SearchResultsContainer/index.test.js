@@ -2,8 +2,8 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { SearchResultsContainer, SearchResults, SearchResultsConnected } from './index';
 import configureStore from 'redux-mock-store';
-import { ACTION, FILM_FIELD_NAMES, STRINGS } from '@common/constants';
-import { setSortingBy } from '@store/actions/filter';
+import { ACTION, FILM_FIELD_NAMES, STRINGS } from 'Common/constants';
+import { setSortingBy } from 'Store/actions/filter';
 import { MemoryRouter, Route } from 'react-router-dom';
 
 const defaultRoutingProps = {

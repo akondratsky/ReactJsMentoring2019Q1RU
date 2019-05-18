@@ -1,4 +1,4 @@
-import { ACTION } from '@common/constants';
+import { ACTION } from 'Common/constants';
 
 export const filmsHasErrored = (state = false, { type, hasErrored }) => {
   switch (type) {

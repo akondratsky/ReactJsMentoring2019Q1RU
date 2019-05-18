@@ -1,5 +1,5 @@
 import { filmsHasErrored, filmsIsLoading, films } from './films';
-import { ACTION } from '@common/constants';
+import { ACTION } from 'Common/constants';
 
 describe('films reducers', () => {
   it('FILMS_HAS_ERRORED', () => {

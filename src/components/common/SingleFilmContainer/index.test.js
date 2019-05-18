@@ -14,7 +14,7 @@ import {
   scryRenderedDOMComponentsWithClass,
 } from 'react-dom/test-utils';
 
-import { configureStore } from '@store/store';
+import { configureStore } from 'Store/store';
 
 import { SingleFilmContainer, SingleFilmWithoutRouter, SingleFilm } from './index';
 

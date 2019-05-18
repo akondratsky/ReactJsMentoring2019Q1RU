@@ -2,7 +2,7 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 
 import App from './components/App';
-import { configureStore } from '@store/store';
+import { configureStore } from 'Store/store';
 
 import { StaticRouter } from 'react-router-dom';
 import { filmsFetchData, fetchFilmById } from './store/actions/films';

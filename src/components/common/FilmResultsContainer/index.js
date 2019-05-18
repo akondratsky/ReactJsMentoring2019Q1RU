@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { FilmResultBodyContainer } from './FilmResultBody';
-import { filmsFetchData, fetchFilmById } from '@actions/films';
+import { filmsFetchData, fetchFilmById } from 'Actions/films';
 
 import './styles.scss';
 

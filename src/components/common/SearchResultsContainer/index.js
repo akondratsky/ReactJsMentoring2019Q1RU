@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
 import { Switcher } from 'CommonComponents/Switcher';
-import { STRINGS, FILM_FIELD_NAMES } from '@common/constants';
-import { setSortingBy } from '@actions/filter';
+import { STRINGS, FILM_FIELD_NAMES } from 'Common/constants';
+import { setSortingBy } from 'Actions/filter';
 
 import './styles.scss';
 

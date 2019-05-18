@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { Redirect } from 'react-router-dom';
 
-import { fetchFilmById } from '@actions/films';
-import { NotFound } from '@src/components/NotFound';
-import { getYearFromReleaseDateString } from '@common/utils';
+import { fetchFilmById } from 'Actions/films';
+import { NotFound } from 'Src/components/NotFound';
+import { getYearFromReleaseDateString } from 'Common/utils';
 
 import './styles.scss';
 
