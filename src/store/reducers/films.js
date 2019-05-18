@@ -1,6 +1,8 @@
+// @flow
+
 import { ACTION } from 'Common/constants';
 
-export const filmsHasErrored = (state = false, { type, hasErrored }) => {
+export const filmsHasErrored = (state: any = false, { type, hasErrored }: {type: string, hasErrored: boolean}) => {
   switch (type) {
     case ACTION.FILMS_HAS_ERRORED:
       return hasErrored;
@@ -9,7 +11,7 @@ export const filmsHasErrored = (state = false, { type, hasErrored }) => {
   }
 };
 
-export const filmsIsLoading = (state = false, { type, isLoading }) => {
+export const filmsIsLoading = (state: Object = false, { type, isLoading }: {type: string, isLoading: boolean}) => {
   switch (type) {
     case ACTION.FILMS_IS_LOADING:
       return isLoading;
@@ -25,7 +27,11 @@ const defaultFilmsState = {
   limit: 10,
 };
 
-export const films = (state = defaultFilmsState, { type, films = [], total = 0, offset = 0, limit = 0 }) => {
+export const films = (
+    state: Object = defaultFilmsState,
+    { type, films = [], total = 0, offset = 0, limit = 0 }
+    :{ type: string, films: Array<Object>, total: number, offset: number, limit: number },
+) => {
   switch (type) {
     case ACTION.FILMS_FETCH_DATA_SUCCESS:
       return {
@@ -39,7 +45,10 @@ export const films = (state = defaultFilmsState, { type, films = [], total = 0, 
   }
 };
 
-export const film = (state = {}, { type, film }) => {
+export const film = (
+    state: Object = {},
+    { type, film }: { type: string, film: Object}
+) => {
   switch (type) {
     case ACTION.FILM_FETCHED_SUCCESSFULLY:
       return film;

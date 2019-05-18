@@ -7,5 +7,13 @@
 [lints]
 
 [options]
+module.name_mapper='^react-dom\/\(.*\)$' -> '@hot-loader/react-dom'
+module.name_mapper='^CommonComponents\/\(.*\)$' -> '<PROJECT_ROOT>/src/components/common/\1'
+module.name_mapper='^Common\/\(.*\)$' -> '<PROJECT_ROOT>/src/common/\1'
+module.name_mapper='^Src\/\(.*\)$' -> '<PROJECT_ROOT>/src/\1'
+module.name_mapper='^Store\/\(.*\)$' -> '<PROJECT_ROOT>/src/store/\1'
+module.name_mapper='^Actions\/\(.*\)$' -> '<PROJECT_ROOT>/src/store/actions/\1'
+module.name_mapper='^Reducers\/\(.*\)$' -> '<PROJECT_ROOT>/src/store/reducers/\1'
+module.name_mapper='^Mocks\/\(.*\)$' -> '<PROJECT_ROOT>/src/__mocks__/\1'
 
 [strict]

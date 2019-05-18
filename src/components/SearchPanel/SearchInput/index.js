@@ -40,16 +40,16 @@ export class SearchInput extends Component {
   }
 
   onSubmit = () => {
-    const { search, searchBy, sortBy } = this.props;
+    const { search, searchBy, sortBy, history, fetchData } = this.props;
 
-    this.props.fetchData({
+    fetchData({
       search: this.state.search,
       searchBy,
       sortBy,
       sortOrder: 'asc',
     });
 
-    this.props.history.push(`/search/${encodeURI(search)}`);
+    history.push(`/search/${encodeURI(search)}`);
   }
 
   render() {

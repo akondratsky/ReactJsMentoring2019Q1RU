@@ -1,3 +1,7 @@
+// @flow
+
+declare var UNPAID: boolean; // is there any way to add global variables to flow?
+
 import fetch from 'isomorphic-unfetch';
 
 import { ACTION, ENDPOINT } from 'Common/constants';
@@ -5,17 +9,19 @@ import { isServer } from 'Common/utils';
 import { generateFilmsResponse, generateFilmStub } from 'Mocks/responseStub';
 
 
-export const filmsHasErrored = (hasErrored) => ({
+export const filmsHasErrored = (hasErrored: boolean) => ({
   type: ACTION.FILMS_HAS_ERRORED,
   hasErrored,
 });
 
-export const filmsIsLoading = (isLoading) => ({
+export const filmsIsLoading = (isLoading: boolean) => ({
   type: ACTION.FILMS_IS_LOADING,
   isLoading,
 });
 
-export const filmsFetchDataSuccess = ({ data, total, offset, limit }) => ({
+export const filmsFetchDataSuccess = (
+    { data, total, offset, limit }: { data: any, total: number, offset: number, limit: number }
+) => ({
   type: ACTION.FILMS_FETCH_DATA_SUCCESS,
   films: data,
   total,
@@ -24,8 +30,8 @@ export const filmsFetchDataSuccess = ({ data, total, offset, limit }) => ({
 });
 
 
-export const filmsFetchData = (params) => (
-  (dispatch) => {
+export const filmsFetchData = (params: any) => (
+  (dispatch: Function) => {
     dispatch(filmsHasErrored(false));
     dispatch(filmsIsLoading(true));
 
@@ -37,9 +43,6 @@ export const filmsFetchData = (params) => (
         sortOrder,
         search,
         searchBy,
-        // filter,
-        // offset,
-        // limit
       } = params;
       paramsString = '?';
 
@@ -59,18 +62,6 @@ export const filmsFetchData = (params) => (
       if (sortOrder) {
         paramsString += `sortOrder=${sortOrder}&`;
       }
-
-      // if (offset) {
-      //   paramsString += `offset=${offset}&`;
-      // }
-
-      // if (filter) {
-      //   paramsString += `filter=${filter}&`;
-      // }
-
-      // if (limit) {
-      //   paramsString += `limit=${limit}&`;
-      // }
     }
 
     if (UNPAID) {
@@ -101,13 +92,13 @@ export const filmsFetchData = (params) => (
   }
 );
 
-export const filmFetchedSuccessfully = (film) => ({
+export const filmFetchedSuccessfully = (film: any) => ({
   type: ACTION.FILM_FETCHED_SUCCESSFULLY,
   film,
 });
 
-export const fetchFilmById = (id) => (
-  (dispatch) => {
+export const fetchFilmById = (id: number) => (
+  (dispatch: Function) => {
     dispatch(filmsHasErrored(false));
     dispatch(filmsIsLoading(true));
 
