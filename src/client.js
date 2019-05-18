@@ -4,7 +4,8 @@ import App from './components/App';
 import { BrowserRouter } from 'react-router-dom';
 import { configureStore } from 'Store/store';
 
-const store = configureStore(window.PRELOADED_STATE);
+
+export const store = configureStore(window.PRELOADED_STATE);
 
 const app = (
   <App
