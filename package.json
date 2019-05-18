@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "cross-env ENV_MODE=development node -r \"esm\" ./src/server-side",
     "prod": "cross-env ENV_MODE=production webpack --config ./webpack",
+    "storybook": "start-storybook -p 9001 -c .storybook",
     "flow": "cls&&node ./webpack/utils/runFlow.js",
     "run-flow": "flow",
     "test": "jest",
@@ -45,6 +46,7 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.4.4",
     "@hot-loader/react-dom": "^16.8.6",
+    "@storybook/react": "^5.0.11",
     "@types/jest": "^24.0.11",
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.1",
