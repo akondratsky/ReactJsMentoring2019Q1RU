@@ -3,22 +3,16 @@ import './styles.scss';
 import { Logo } from 'CommonComponents/Logo';
 import { SearchPanelContainer } from '../../SearchPanel';
 import { SearchResultsContainer } from '../SearchResultsContainer';
-import { DummyButton } from 'CommonComponents/DummyButton';
+import { Link } from 'react-router-dom';
 
 export class PageHeader extends Component {
-  handleSearchClick = () => {
-    this.props.history.push('/');
-  }
-
   render() {
     const { children, location } = this.props;
     let buttonBlock = null;
 
     if (location.pathname.startsWith('/film/')) {
       buttonBlock = (
-        <div className='page-header__search-button'>
-          <DummyButton text='SEARCH' isActive onClick={this.handleSearchClick}></DummyButton>
-        </div>
+        <Link className='button button-active page-header__search-button' to='/'>SEARCH</Link>
       );
     }
 
