@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { Redirect } from 'react-router-dom';
 
 import { fetchFilmById } from 'Actions/films';
 import { NotFound } from 'Src/components/NotFound';
@@ -21,19 +20,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export class SingleFilm extends Component {
-  componentDidMount() {
-    const { match, film, isLoading } = this.props;
-    if (match.params.id !== film.id && !isLoading) {
-      this.props.fetchFilm(+match.params.id);
-    }
-  }
-
   render() {
-    const { match, isLoading, film } = this.props;
-
-    if (!match.params.id) {
-      return <Redirect to='/404' />;
-    }
+    const { isLoading, film } = this.props;
 
     if (isLoading) {
       return <div>Loading...</div>;
