@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { films, filmsHasErrored, filmsIsLoading, film } from './films';
-import { search, searchBy, sortBy } from './filter';
+import { search, searchBy, sortBy, sortOrder } from './filter';
 import { persistReducer } from './persist';
 
 export const rootReducer = combineReducers({
@@ -11,5 +11,6 @@ export const rootReducer = combineReducers({
   searchBy,
   search,
   sortBy,
+  sortOrder,
   persistReducer,
 });

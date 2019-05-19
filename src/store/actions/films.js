@@ -8,7 +8,8 @@ import { ACTION, ENDPOINT } from 'Common/constants';
 import { isServer } from 'Common/utils';
 import { getSearchBy, getSearchString, getSortBy, getSortOrder } from 'Selectors/films';
 import { generateFilmsResponse, generateFilmStub } from 'Mocks/responseStub';
-
+import { getFilms } from 'Selectors/films';
+import { setSearchType, setSearchString } from './filter';
 
 export const setFilmsHasErrored = (hasErrored: boolean) => ({
   type: ACTION.FILMS_HAS_ERRORED,
@@ -31,7 +32,7 @@ export const filmsFetchDataSuccess = (
 });
 
 export const setSortOrder = (
-    { sortOrder }: { sortOrder: string }
+    sortOrder: string
 ) => ({
   type: ACTION.SET_SORT_ORDERING,
   sortOrder,
@@ -39,7 +40,6 @@ export const setSortOrder = (
 
 export const filmsFetchData = () => (
   (dispatch: Function, getState: Function) => {
-    console.log('fetching films...');
     dispatch(setFilmsHasErrored(false));
     dispatch(setFilmsIsLoading(true));
 
@@ -112,10 +112,9 @@ export const fetchFilmById = (id: number) => (
           .then(() => {
             const stubFilm = generateFilmStub();
             dispatch(filmFetchedSuccessfully(stubFilm));
-            dispatch(filmsFetchData({
-              searchBy: 'genres',
-              search: stubFilm.genres[0],
-            }));
+            dispatch(setSearchType('genres'));
+            dispatch(setSearchString(stubFilm.genres[0]));
+            dispatch(getFilms());
           });
     } else {
       return fetch(ENDPOINT.GET_MOVIE + id)
@@ -130,10 +129,8 @@ export const fetchFilmById = (id: number) => (
           .then((film) => {
             dispatch(filmFetchedSuccessfully(film));
             if (!isServer) {
-              dispatch(filmsFetchData({
-                searchBy: 'genres',
-                search: film.genres[0],
-              }));
+              dispatch(setSearchType('genres'));
+              dispatch(setSearchString(film.genres[0]));
             }
           })
           .catch(() => {

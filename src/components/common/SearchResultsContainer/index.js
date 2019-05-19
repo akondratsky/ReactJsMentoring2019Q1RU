@@ -3,21 +3,20 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
 import { Switcher } from 'CommonComponents/Switcher';
-import { STRINGS, FILM_FIELD_NAMES } from 'Common/constants';
+
 import { setSortingBy } from 'Actions/filter';
+import { getTotalFilms, getSortBy, getFilmFirstGenre } from 'Selectors/films';
 
 import './styles.scss';
 
 export class SearchResults extends Component {
-  setSortingByHandler = (typeName) => {
-    this.props.setSortingBy(typeName);
-  }
-
   render() {
     const { pathname } = this.props.location;
-    const { genre, sortBy } = this.props;
+    const { genre, sortBy, changeSortingByTo } = this.props;
 
     let content = null;
+
+    // for search page:
     if (pathname === '/' || pathname.startsWith('/search')) {
       content = <Fragment>
         <div className='search-results__found'>
@@ -29,9 +28,11 @@ export class SearchResults extends Component {
             variants={['release date', 'rating']}
             default={sortBy}
             isLight={true}
-            onChange={this.setSortingByHandler}/>
+            onChange={changeSortingByTo}/>
         </div>
       </Fragment>;
+
+    // for film page:
     } else if (pathname.startsWith('/film/')) {
       content = <div className='search-results__found'>
         Films by { genre } genre
@@ -46,39 +47,15 @@ export class SearchResults extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  let sortBy = '';
 
-  switch (state.sortBy) {
-    case FILM_FIELD_NAMES.RELEASE_DATE:
-      sortBy = STRINGS.RELEASE_DATE;
-      break;
-    case FILM_FIELD_NAMES.RATING:
-      sortBy = STRINGS.RATING;
-      break;
-  }
-
-  return {
-    totalFilms: state.films.total,
-    sortBy,
-    genre: (state.film && state.film.genres) ? state.film.genres[0] : '',
-  };
-};
+const mapStateToProps = (state) => ({
+  totalFilms: getTotalFilms(state),
+  sortBy: getSortBy(state),
+  genre: getFilmFirstGenre(state),
+});
 
 const mapDispatchToProps = (dispatch) => ({
-  setSortingBy: (typeName) => {
-    let fieldName = '';
-
-    switch (typeName) {
-      case STRINGS.RELEASE_DATE:
-        fieldName = FILM_FIELD_NAMES.RELEASE_DATE;
-        break;
-      case STRINGS.RATING:
-        fieldName = FILM_FIELD_NAMES.RATING;
-        break;
-    }
-    dispatch(setSortingBy(fieldName));
-  },
+  changeSortingByTo: (typeName) => dispatch(setSortingBy(typeName)),
 });
 
 export const SearchResultsConnected = connect(mapStateToProps, mapDispatchToProps)(SearchResults);

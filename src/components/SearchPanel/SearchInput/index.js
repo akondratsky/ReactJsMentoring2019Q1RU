@@ -73,20 +73,4 @@ const mapDispatchToProps = (dispatch, bb, cc, dd) => {
 
 export const SearchInputWithoutRouter = connect(mapStateToProps, mapDispatchToProps)(SearchInput);
 
-
-// const mergeProps = (stateProps, dispatchProps) => {
-//   const { dispatch } = dispatchProps;
-//   debugger;
-//   return ({
-//     ...stateProps,
-//     ...dispatchProps,
-//     setSearchType: (typeName) => dispatch(setSearchType(typeName)),
-//     setSearchValue: (value) => dispatch(setSearchString(value)),
-//     fetchData: () => getFilms(),
-//   });
-// };
-
-
-// export const SearchInputWithoutRouter = connect(mapStateToProps, null, mergeProps)(SearchInput);
-
 export const SearchInputContainer = withRouter(SearchInputWithoutRouter);

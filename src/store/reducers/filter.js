@@ -38,7 +38,10 @@ export const sortBy = (
   }
 };
 
-export const sortOrder = (state: string = 'asc', { type, sortOrder }: { type: String, sortOrder: string}) => {
+export const sortOrder = (
+    state: Object = 'asc',
+    { type, sortOrder }: { type: String, sortOrder: string}
+) => {
   switch (type) {
     case ACTION.SET_SORT_ORDERING:
       return sortOrder;
